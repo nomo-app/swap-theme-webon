@@ -25,7 +25,7 @@ class HomeScreenRoute extends AppRoute implements HomeScreenArguments {
   HomeScreenRoute()
       : super(
           name: '/',
-          page: HomeScreen(),
+          page: const HomeScreen(),
         );
   static String path = '/';
 }
