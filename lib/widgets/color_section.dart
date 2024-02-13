@@ -11,6 +11,8 @@ class ColorSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final colors = ref.watch(colorPaletteProvider);
+    final selectedColor = ref.watch(selectedColorProvider);
+    final selectedColorName = ref.watch(selectedColorNameProvider);
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -20,17 +22,53 @@ class ColorSection extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ColorsWidget(color: colors.primary, name: "Primary"),
-            ColorsWidget(color: colors.foreground1, name: "Foreground"),
-            ColorsWidget(color: colors.background1, name: "Background"),
-            ColorsWidget(color: colors.surface, name: "Surface"),
+            ColorsWidget(
+              color: colors.primary,
+              name: "Primary",
+              isSelected: selectedColor == colors.primary,
+              onTap: () {
+                ref.read(selectedColorNameProvider.notifier).state = "Primary";
+                ref.read(selectedColorProvider.notifier).state = colors.primary;
+              },
+            ),
+            ColorsWidget(
+              color: colors.foreground1,
+              name: "Foreground",
+              isSelected: selectedColor == colors.foreground1,
+              onTap: () {
+                ref.read(selectedColorNameProvider.notifier).state =
+                    "Foreground";
+                ref.read(selectedColorProvider.notifier).state =
+                    colors.foreground1;
+              },
+            ),
+            ColorsWidget(
+              color: colors.background1,
+              name: "Background",
+              isSelected: selectedColor == colors.background1,
+              onTap: () {
+                ref.read(selectedColorNameProvider.notifier).state =
+                    "Background";
+                ref.read(selectedColorProvider.notifier).state =
+                    colors.background1;
+              },
+            ),
+            ColorsWidget(
+              color: colors.surface,
+              isSelected: selectedColor == colors.surface,
+              name: "Surface",
+              onTap: () {
+                ref.read(selectedColorNameProvider.notifier).state = "Surface";
+                ref.read(selectedColorProvider.notifier).state = colors.surface;
+              },
+            ),
           ],
         ),
         SizedBox(
           width: 400,
           height: 500,
           child: ColorPicker(
-            color: colors.primary,
+            color: selectedColor ?? Colors.white,
             enableOpacity: true,
             enableShadesSelection: true,
             pickersEnabled: const <ColorPickerType, bool>{
@@ -42,9 +80,10 @@ class ColorSection extends ConsumerWidget {
             onColorChanged: (Color color) {},
             onColorChangeEnd: (Color color) {
               Logger().i(color.toString());
+
               ref.read(colorPaletteProvider.notifier).updateColor(
                     color,
-                    "name",
+                    selectedColorName ?? "Primary",
                   );
             },
             borderRadius: 8,
@@ -62,4 +101,11 @@ class ColorSection extends ConsumerWidget {
       ],
     );
   }
+}
+
+enum ColorMode {
+  Primary,
+  Foreground,
+  Background,
+  Surface,
 }

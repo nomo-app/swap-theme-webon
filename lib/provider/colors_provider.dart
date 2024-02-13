@@ -33,3 +33,11 @@ class ColorPalette extends StateNotifier<NomoColors> {
     );
   }
 }
+
+final selectedColorProvider = StateProvider<Color?>((ref) {
+  return null;
+});
+
+final selectedColorNameProvider = StateProvider<String?>((ref) {
+  return null;
+});
