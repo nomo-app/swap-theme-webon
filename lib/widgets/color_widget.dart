@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:logger/logger.dart';
+import 'package:nomo_ui_kit/components/dialog/nomo_dialog.dart';
 import 'package:nomo_ui_kit/components/text/nomo_text.dart';
 import 'package:nomo_ui_kit/theme/nomo_theme.dart';
 import 'package:flex_color_picker/flex_color_picker.dart';
+import 'package:swap_theme_webon/provider/colors_provider.dart';
 
-class ColorsWidget extends StatelessWidget {
+class ColorsWidget extends ConsumerWidget {
   final Color color;
   final String name;
   const ColorsWidget({super.key, required this.color, required this.name});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final typo = context.theme.typography;
 
     return Container(
@@ -23,23 +27,36 @@ class ColorsWidget extends StatelessWidget {
                   showDialog(
                     context: context,
                     builder: (BuildContext context) {
-                      return AlertDialog(
-                        title: const Text('Pick a color'),
-                        content: SingleChildScrollView(
+                      return NomoDialog(
+                        title: "Select a color",
+                        titleStyle: context.theme.typography.h2,
+                        maxWidth: 450,
+                        content: Material(
+                          color: Colors.transparent,
                           child: ColorPicker(
-                            pickerTypeLabels: <ColorPickerType, String>{
-                              ColorPickerType.wheel: 'Custom',
+                            color: color,
+                            enableOpacity: true,
+                            enableShadesSelection: true,
+                            pickersEnabled: const <ColorPickerType, bool>{
+                              ColorPickerType.both: false,
+                              ColorPickerType.primary: false,
+                              ColorPickerType.accent: false,
+                              ColorPickerType.wheel: true,
                             },
                             onColorChanged: (Color color) {},
-                            width: 40,
-                            height: 40,
+                            onColorChangeEnd: (Color color) {
+                              Logger().i(color.toString());
+                              ref
+                                  .read(colorPaletteProvider.notifier)
+                                  .updateColor(
+                                    color,
+                                    name,
+                                  );
+                            },
                             borderRadius: 8,
                             spacing: 4,
-                            runSpacing: 4,
-                            wheelDiameter: 160,
-                            heading: const Text('Select color'),
-                            subheading: const Text('Select color shade'),
-                            wheelWidth: 20,
+                            wheelDiameter: 200,
+                            wheelWidth: 16,
                             showColorName: true,
                             showColorCode: true,
                             copyPasteBehavior:

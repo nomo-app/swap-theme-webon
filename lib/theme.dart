@@ -27,8 +27,7 @@ const constants = NomoComponentConstants(
 
 enum ColorMode {
   LIGHT('Nomo Light', "assets/images/light/registrationbackground.png"),
-  DARK('Nomo Dark', "assets/images/dark/registrationbackground.png"),
-  AVINOC('AVINOC', "assets/images/avinoc/registrationbackground.png");
+  DARK('Nomo Dark', "assets/images/dark/registrationbackground.png");
 
   final String displayName;
   final String imagePath;
@@ -38,7 +37,6 @@ enum ColorMode {
   NomoColorThemeData get theme => switch (this) {
         ColorMode.LIGHT => light,
         ColorMode.DARK => dark,
-        ColorMode.AVINOC => avinoc,
       };
 }
 
@@ -52,7 +50,6 @@ extension ColorTypeExt on NomoColorThemeData {
 
   bool get isLight => type == ColorMode.LIGHT;
   bool get isDark => type == ColorMode.DARK;
-  bool get isAvinoc => type == ColorMode.AVINOC;
 
   Color get borderColor => Colors.white24;
 }
@@ -122,29 +119,6 @@ final dark = NomoColorThemeData(
       ),
     );
   },
-);
-
-final avinoc = NomoColorThemeData(
-  key: const ValueKey('avinoc'),
-  colors: const NomoColors(
-    primary: Color(0xff2FAAA5),
-    onPrimary: Colors.white,
-    primaryContainer: Color.fromARGB(255, 202, 255, 253),
-    secondary: Color(0xff2FAAA5),
-    onSecondary: Color(0xff1C1C1C),
-    secondaryContainer: Color(0xff1C1C1C),
-    background1: Color(0xff272F4A),
-    background2: Color(0xff1C1C1C),
-    background3: Color(0xff13191d),
-    surface: Color(0xFF101d42),
-    error: Colors.redAccent,
-    disabled: Color(0xFFE0E0E0),
-    foreground1: Color(0xEAFFFFFF),
-    foreground2: Color(0xF0FFFFFF),
-    foreground3: Color(0xFAFFFFFF),
-    brightness: Brightness.dark,
-    onDisabled: Colors.grey,
-  ),
 );
 
 final sizingSmall = NomoSizingThemeData(
