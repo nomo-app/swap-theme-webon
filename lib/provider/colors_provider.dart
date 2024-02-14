@@ -32,6 +32,12 @@ class ColorPalette extends StateNotifier<NomoColors> {
       surface: name == "Surface" ? color : state.surface,
     );
   }
+
+  void clearColors() {
+    state = ColorMode.LIGHT.theme.colors;
+  }
+
+  void setTheme() {}
 }
 
 final selectedColorProvider = StateProvider<Color?>((ref) {

@@ -8,7 +8,8 @@ enum ColorFields {
   primary("Primary"),
   foreground1("Foreground"),
   background1("Background"),
-  surface("Surface");
+  surface("Surface"),
+  onPrimary("On Primary");
 
   final String name;
 
@@ -33,6 +34,7 @@ class ColorSection extends ConsumerWidget {
             ColorsWidget(
               color: colors.primary,
               name: "Primary",
+              description: "The primary color of the app",
               onTap: () {
                 NomoNavigator.of(context)
                     .pushNamed("/chooseColor", urlArguments: {
@@ -41,8 +43,21 @@ class ColorSection extends ConsumerWidget {
               },
             ),
             ColorsWidget(
+              color: colors.onPrimary,
+              name: "On Primary",
+              description: "The color of the text on the primary color",
+              onTap: () {
+                NomoNavigator.of(context)
+                    .pushNamed("/chooseColor", urlArguments: {
+                  "name": ColorFields.onPrimary,
+                });
+              },
+            ),
+            ColorsWidget(
               color: colors.foreground1,
               name: "Foreground",
+              description:
+                  "The color of the text on the background (text color)",
               onTap: () {
                 NomoNavigator.of(context)
                     .pushNamed("/chooseColor", urlArguments: {
@@ -53,6 +68,7 @@ class ColorSection extends ConsumerWidget {
             ColorsWidget(
               color: colors.background1,
               name: "Background",
+              description: "The background color of the app",
               onTap: () {
                 NomoNavigator.of(context)
                     .pushNamed("/chooseColor", urlArguments: {
@@ -63,6 +79,7 @@ class ColorSection extends ConsumerWidget {
             ColorsWidget(
               color: colors.surface,
               name: "Surface",
+              description: "The surface color of the app (cards, etc)",
               onTap: () {
                 NomoNavigator.of(context)
                     .pushNamed("/chooseColor", urlArguments: {

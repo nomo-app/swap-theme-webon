@@ -52,10 +52,12 @@ class ExampleTheme extends ConsumerWidget {
                 onPressed: () {},
                 padding: const EdgeInsets.all(12),
                 width: 100,
-                text: "Button",
                 backgroundColor: colors.primary,
-                textStyle: context.theme.typography.b3.copyWith(
-                  color: colors.onPrimary,
+                child: NomoText(
+                  "Button",
+                  style: context.theme.typography.b3.copyWith(
+                    color: colors.onPrimary,
+                  ),
                 ),
               ),
               SecondaryNomoButton(

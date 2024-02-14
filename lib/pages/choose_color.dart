@@ -30,6 +30,7 @@ class ChooseColor extends ConsumerWidget {
           ColorFields.foreground1 => colors.foreground1,
           ColorFields.background1 => colors.background1,
           ColorFields.surface => colors.surface,
+          ColorFields.onPrimary => colors.onPrimary,
         };
 
         Logger().i(colorArgs);
