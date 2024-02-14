@@ -30,7 +30,7 @@ class ColorsWidget extends ConsumerWidget {
       margin: const EdgeInsets.only(bottom: 16),
       padding: const EdgeInsets.all(16),
       border: Border.all(
-        color: colors.primary.withOpacity(0.5),
+        color: colors.foreground1.withOpacity(0.5),
         width: 2,
       ),
       borderRadius: BorderRadius.circular(8),
@@ -60,7 +60,9 @@ class ColorsWidget extends ConsumerWidget {
           Expanded(
             child: NomoText(
               description,
+              fit: true,
               maxLines: 3,
+              overflow: TextOverflow.ellipsis,
               style: typo.b2.copyWith(
                 color: colors.foreground1,
               ),
@@ -69,7 +71,7 @@ class ColorsWidget extends ConsumerWidget {
           const SizedBox(width: 16),
           Icon(
             NomoIcons.arrowRight,
-            color: colors.primary,
+            color: colors.foreground1,
             size: 24,
           ),
         ],

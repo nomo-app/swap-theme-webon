@@ -37,7 +37,15 @@ class ColorPalette extends StateNotifier<NomoColors> {
     state = ColorMode.LIGHT.theme.colors;
   }
 
-  void setTheme() {}
+  void setTheme() {
+    //TODO: Implement setTheme
+    throw UnimplementedError();
+  }
+
+  void saveTheme() {
+    //TODO: Implement saveTheme
+    throw UnimplementedError();
+  }
 }
 
 final selectedColorProvider = StateProvider<Color?>((ref) {

@@ -7,3 +7,4 @@ analyzer:
   exclude:
     - packages/nomo-ui-kit
     - packages/webon-kit-dart
+    - lib/routes.g.dart
