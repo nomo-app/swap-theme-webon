@@ -3,6 +3,7 @@ import 'package:nomo_router/router/entities/route.dart';
 import 'package:nomo_ui_kit/components/app/scaffold/nomo_scaffold.dart';
 import 'package:nomo_ui_kit/nomo_ui_kit_base.dart';
 import 'package:route_gen/anotations.dart';
+import 'package:swap_theme_webon/pages/choose_color.dart';
 import 'package:swap_theme_webon/pages/home.dart';
 
 part 'routes.g.dart';
@@ -23,6 +24,8 @@ const _routes = [
     wrapper: wrapper,
     children: [
       MenuPageRouteInfo(path: "/", page: HomeScreen, title: "Home"),
+      MenuModalRouteInfo(
+          path: "/chooseColor", page: ChooseColor, title: "Choose Color"),
     ],
   )
 ];

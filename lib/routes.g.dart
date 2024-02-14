@@ -11,6 +11,7 @@ class AppRouter extends NomoAppRouter {
       : super(
           {
             HomeScreenRoute.path: ([a]) => HomeScreenRoute(),
+            ChooseColorRoute.path: ([a]) => ChooseColorRoute(),
           },
           _routes.expanded.where((r) => r is! NestedPageRouteInfo).toList(),
           _routes.expanded.whereType<NestedPageRouteInfo>().toList(),
@@ -25,7 +26,20 @@ class HomeScreenRoute extends AppRoute implements HomeScreenArguments {
   HomeScreenRoute()
       : super(
           name: '/',
-          page: const HomeScreen(),
+          page: HomeScreen(),
         );
   static String path = '/';
+}
+
+class ChooseColorArguments {
+  const ChooseColorArguments();
+}
+
+class ChooseColorRoute extends AppRoute implements ChooseColorArguments {
+  ChooseColorRoute()
+      : super(
+          name: '/chooseColor',
+          page: ChooseColor(),
+        );
+  static String path = '/chooseColor';
 }
