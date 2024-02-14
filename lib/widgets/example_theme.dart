@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nomo_ui_kit/components/buttons/primary/nomo_primary_button.dart';
 import 'package:nomo_ui_kit/components/buttons/secondary/nomo_secondary_button.dart';
 import 'package:nomo_ui_kit/components/card/nomo_card.dart';
 import 'package:nomo_ui_kit/components/text/nomo_text.dart';
 import 'package:nomo_ui_kit/theme/nomo_theme.dart';
-import 'package:swap_theme_webon/provider/colors_provider.dart';
+import 'package:nomo_ui_kit/theme/sub/nomo_color_theme.dart';
 
-class ExampleTheme extends ConsumerWidget {
-  const ExampleTheme({super.key});
+class ExampleTheme extends StatelessWidget {
+  final NomoColors theme;
+
+  const ExampleTheme({required this.theme, super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final colors = ref.watch(colorPaletteProvider);
-
+  Widget build(BuildContext context) {
     return NomoCard(
-      backgroundColor: colors.surface,
+      backgroundColor: theme.surface,
       elevation: 2,
       borderRadius: BorderRadius.circular(8),
       padding: const EdgeInsets.all(32),
@@ -27,19 +26,19 @@ class ExampleTheme extends ConsumerWidget {
               NomoText(
                 'Small Text',
                 style: context.theme.typography.b1.copyWith(
-                  color: colors.foreground1,
+                  color: theme.foreground1,
                 ),
               ),
               NomoText(
                 'Medium Text',
                 style: context.theme.typography.b3.copyWith(
-                  color: colors.foreground1,
+                  color: theme.foreground1,
                 ),
               ),
               NomoText(
                 'Large Text',
                 style: context.theme.typography.h1.copyWith(
-                  color: colors.foreground1,
+                  color: theme.foreground1,
                 ),
               ),
             ],
@@ -52,11 +51,11 @@ class ExampleTheme extends ConsumerWidget {
                 onPressed: () {},
                 padding: const EdgeInsets.all(12),
                 width: 100,
-                backgroundColor: colors.primary,
+                backgroundColor: theme.primary,
                 child: NomoText(
                   "Button",
                   style: context.theme.typography.b3.copyWith(
-                    color: colors.onPrimary,
+                    color: theme.onPrimary,
                   ),
                 ),
               ),
@@ -66,7 +65,7 @@ class ExampleTheme extends ConsumerWidget {
                 padding: const EdgeInsets.all(12),
                 text: "Button",
                 textStyle: context.theme.typography.b3.copyWith(
-                  color: colors.foreground1,
+                  color: theme.foreground1,
                 ),
               ),
             ],

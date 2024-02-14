@@ -7,7 +7,13 @@
         {
             "name": "swap_theme_webon",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
+            "args": [
+                "-d",
+                "chrome",
+                "--web-port",
+                "3000"
+            ]
         },
         {
             "name": "swap_theme_webon (profile mode)",

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nomo_ui_kit/theme/sub/nomo_color_theme.dart';
+import 'package:swap_theme_webon/provider/saved_themes_provider.dart';
 import 'package:swap_theme_webon/theme.dart';
 
 final colorPaletteProvider =
@@ -43,8 +44,7 @@ class ColorPalette extends StateNotifier<NomoColors> {
   }
 
   void saveTheme() {
-    //TODO: Implement saveTheme
-    throw UnimplementedError();
+    ref.read(savedThemesProvider.notifier).addTheme(state);
   }
 }
 

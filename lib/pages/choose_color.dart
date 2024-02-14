@@ -90,7 +90,9 @@ class ChooseColor extends ConsumerWidget {
                 ),
               ),
             ),
-            const ExampleTheme(),
+            ExampleTheme(
+              theme: colors,
+            ),
           ],
         );
       },

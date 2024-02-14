@@ -157,3 +157,31 @@ export const nomoLocalStorage = {
         await invokeNomoFunction("nomoRemoveItem", { key });
     },
 };
+
+export async function nomoGetLocalStorageItem(key, options) {
+    if (isFallbackModeActive()) {
+        return localStorage.getItem(key);
+    }
+
+    console.log("nomoGetLocalStorageItem with key options", key, options);
+
+    const rawResult = await invokeNomoFunction("nomoGetItem", { key, options });
+
+    console.log("nomoGetLocalStorageItem", rawResult);
+
+    return rawResult.value;
+}
+
+export async function nomoSetLocalStorageItem(key, value) {
+    if (isFallbackModeActive()) {
+        localStorage.setItem(key, value);
+        return;
+    }
+    console.log("nomoSetLocalStorageItem with key value", key, value);
+
+    await invokeNomoFunction("nomoSetItem", { key, value });
+}
+
+
+window.nomoSetLocalStorageItem = nomoSetLocalStorageItem;
+window.nomoGetLocalStorageItem = nomoGetLocalStorageItem;
