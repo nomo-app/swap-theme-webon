@@ -8,6 +8,7 @@ import 'package:nomo_ui_kit/components/text/nomo_text.dart';
 import 'package:nomo_ui_kit/icons/nomo_icons.dart';
 import 'package:nomo_ui_kit/theme/nomo_theme.dart';
 import 'package:swap_theme_webon/provider/colors_provider.dart';
+import 'package:swap_theme_webon/widgets/color_section.dart';
 import 'package:swap_theme_webon/widgets/example_theme.dart';
 
 class ChooseColor extends ConsumerWidget {
@@ -15,9 +16,21 @@ class ChooseColor extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final colors = ref.watch(colorPaletteProvider);
     return NomoRouteBody(
       builder: (context, route) {
         final colorArgs = route.urlArguments;
+
+        ColorFields colorField = colorArgs?["name"] ?? ColorFields.primary;
+
+        Logger().i(colorField);
+
+        final startColor = switch (colorField) {
+          ColorFields.primary => colors.primary,
+          ColorFields.foreground1 => colors.foreground1,
+          ColorFields.background1 => colors.background1,
+          ColorFields.surface => colors.surface,
+        };
 
         Logger().i(colorArgs);
         return Column(
@@ -31,7 +44,7 @@ class ChooseColor extends ConsumerWidget {
                 ),
                 const Spacer(),
                 NomoText(
-                  colorArgs?["name"] ?? "Choose Color",
+                  colorField.name,
                   style: context.theme.typography.h2,
                 ),
                 const Spacer(),
@@ -42,9 +55,9 @@ class ChooseColor extends ConsumerWidget {
               width: 400,
               height: 500,
               child: Material(
-                color: context.colors.background1,
+                color: colors.background1,
                 child: ColorPicker(
-                  color: colorArgs?["color"] ?? Colors.blue,
+                  color: startColor,
                   enableOpacity: true,
                   enableShadesSelection: true,
                   pickersEnabled: const <ColorPickerType, bool>{
@@ -57,10 +70,9 @@ class ChooseColor extends ConsumerWidget {
                   onColorChangeEnd: (Color color) {
                     Logger().i(color.toString());
 
-                    ref.read(colorPaletteProvider.notifier).updateColor(
-                          color,
-                          colorArgs?["name"] ?? "Primary",
-                        );
+                    ref
+                        .read(colorPaletteProvider.notifier)
+                        .updateColor(color, colorField.name);
                   },
                   borderRadius: 8,
                   spacing: 4,

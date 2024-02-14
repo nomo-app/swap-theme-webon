@@ -18,6 +18,11 @@ class HomeScreen extends StatelessWidget {
               style: context.theme.typography.h1,
             ),
             const SizedBox(height: 32),
+            NomoText(
+              "Choose a color to start",
+              style: context.theme.typography.b3,
+            ),
+            const SizedBox(height: 16),
             const ColorSection(),
           ],
         ),

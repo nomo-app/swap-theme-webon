@@ -4,6 +4,17 @@ import 'package:nomo_router/nomo_router.dart';
 import 'package:swap_theme_webon/provider/colors_provider.dart';
 import 'package:swap_theme_webon/widgets/color_widget.dart';
 
+enum ColorFields {
+  primary("Primary"),
+  foreground1("Foreground"),
+  background1("Background"),
+  surface("Surface");
+
+  final String name;
+
+  const ColorFields(this.name);
+}
+
 class ColorSection extends ConsumerWidget {
   const ColorSection({super.key});
 
@@ -25,8 +36,7 @@ class ColorSection extends ConsumerWidget {
               onTap: () {
                 NomoNavigator.of(context)
                     .pushNamed("/chooseColor", urlArguments: {
-                  "color": colors.primary,
-                  "name": "Primary",
+                  "name": ColorFields.primary,
                 });
               },
             ),
@@ -36,8 +46,7 @@ class ColorSection extends ConsumerWidget {
               onTap: () {
                 NomoNavigator.of(context)
                     .pushNamed("/chooseColor", urlArguments: {
-                  "color": colors.foreground1,
-                  "name": "Foreground",
+                  "name": ColorFields.foreground1,
                 });
               },
             ),
@@ -47,8 +56,7 @@ class ColorSection extends ConsumerWidget {
               onTap: () {
                 NomoNavigator.of(context)
                     .pushNamed("/chooseColor", urlArguments: {
-                  "color": colors.background1,
-                  "name": "Background",
+                  "name": ColorFields.background1,
                 });
               },
             ),
@@ -58,8 +66,7 @@ class ColorSection extends ConsumerWidget {
               onTap: () {
                 NomoNavigator.of(context)
                     .pushNamed("/chooseColor", urlArguments: {
-                  "color": colors.surface,
-                  "name": "Surface",
+                  "name": ColorFields.surface,
                 });
               },
             ),
