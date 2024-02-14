@@ -12,6 +12,7 @@ class AppRouter extends NomoAppRouter {
           {
             HomeScreenRoute.path: ([a]) => HomeScreenRoute(),
             ChooseColorRoute.path: ([a]) => ChooseColorRoute(),
+            SavedThemesRoute.path: ([a]) => SavedThemesRoute(),
           },
           _routes.expanded.where((r) => r is! NestedPageRouteInfo).toList(),
           _routes.expanded.whereType<NestedPageRouteInfo>().toList(),
@@ -42,4 +43,17 @@ class ChooseColorRoute extends AppRoute implements ChooseColorArguments {
           page: ChooseColor(),
         );
   static String path = '/chooseColor';
+}
+
+class SavedThemesArguments {
+  const SavedThemesArguments();
+}
+
+class SavedThemesRoute extends AppRoute implements SavedThemesArguments {
+  SavedThemesRoute()
+      : super(
+          name: '/savedThemes',
+          page: SavedThemes(),
+        );
+  static String path = '/savedThemes';
 }
