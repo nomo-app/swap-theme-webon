@@ -35,7 +35,7 @@ class ChooseColor extends ConsumerWidget {
 
         Logger().i(colorArgs);
         return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Row(
               children: [

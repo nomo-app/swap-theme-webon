@@ -16,20 +16,18 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final colors = ref.watch(colorPalatteNotifierProvider);
-
     return NomoRouteBody(
       builder: (context, route) => SingleChildScrollView(
         child: Column(
           children: [
-            HomeHeading(colors: colors),
+            const HomeHeading(),
             const SizedBox(height: 24),
-            ColorSectionHeading(colors: colors),
+            const ColorSectionHeading(),
             const SizedBox(height: 16),
             const ColorSection(),
             const SizedBox(height: 16),
             PrimaryNomoButton(
-              backgroundColor: colors.primary,
+              backgroundColor: context.colors.primary,
               onPressed: () {
                 ref.read(colorPalatteNotifierProvider.notifier).setTheme();
               },
@@ -39,19 +37,17 @@ class HomeScreen extends ConsumerWidget {
               child: NomoText(
                 "Set Theme",
                 style: context.theme.typography.b3.copyWith(
-                  color: colors.onPrimary,
                   fontWeight: FontWeight.bold,
+                  color: context.theme.colors.onPrimary,
                 ),
               ),
             ),
-            DividerWidget(colors: colors),
+            const DividerWidget(),
             SecondaryNomoButton(
               width: context.width * 0.8,
               height: 52,
               padding: const EdgeInsets.all(8),
-              textStyle: context.theme.typography.b3.copyWith(
-                color: colors.foreground1,
-              ),
+              textStyle: context.theme.typography.b3,
               onPressed: () {
                 ref.read(colorPalatteNotifierProvider.notifier).saveTheme();
               },

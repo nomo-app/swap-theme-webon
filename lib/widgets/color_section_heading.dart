@@ -4,16 +4,12 @@ import 'package:nomo_ui_kit/components/buttons/primary/nomo_primary_button.dart'
 import 'package:nomo_ui_kit/components/buttons/secondary/nomo_secondary_button.dart';
 import 'package:nomo_ui_kit/components/text/nomo_text.dart';
 import 'package:nomo_ui_kit/theme/nomo_theme.dart';
-import 'package:nomo_ui_kit/theme/sub/nomo_color_theme.dart';
 import 'package:swap_theme_webon/provider/colors_provider.dart';
 
 class ColorSectionHeading extends ConsumerWidget {
   const ColorSectionHeading({
     super.key,
-    required this.colors,
   });
-
-  final NomoColors colors;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -25,7 +21,7 @@ class ColorSectionHeading extends ConsumerWidget {
           NomoText(
             "Choose a color to start",
             style: context.theme.typography.b3,
-            color: colors.foreground1,
+            color: context.theme.colors.foreground1,
           ),
           SecondaryNomoButton(
             text: "Clear Theme",

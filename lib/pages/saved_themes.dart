@@ -49,7 +49,13 @@ class SavedThemes extends ConsumerWidget {
                 style: context.theme.typography.h2,
                 color: colors.error,
               ),
-            if (themes.hasValue)
+            if (themes.hasValue && themes.value!.isEmpty)
+              NomoText(
+                "No saved themes",
+                style: context.theme.typography.h2,
+                color: colors.foreground1,
+              ),
+            if (themes.hasValue && themes.value!.isNotEmpty)
               Expanded(
                 child: ListView.builder(
                   itemCount: themes.value!.length,
@@ -58,6 +64,7 @@ class SavedThemes extends ConsumerWidget {
                     return SavedThemeItem(
                       theme: theme,
                       name: "Theme ${index + 1}",
+                      index: index,
                     );
                   },
                 ),

@@ -7,7 +7,7 @@ part of 'saved_themes_provider.dart';
 // **************************************************************************
 
 String _$savedThemeNotifierHash() =>
-    r'1f2af8ec6108e22dc62f26c399229a2cdc70995d';
+    r'dd2ac8f1635c7ef858ed1dc5bb25ccd16ba005bc';
 
 /// See also [SavedThemeNotifier].
 @ProviderFor(SavedThemeNotifier)

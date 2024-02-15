@@ -30,7 +30,7 @@ class ColorsWidget extends ConsumerWidget {
       margin: const EdgeInsets.only(bottom: 16),
       padding: const EdgeInsets.all(16),
       border: Border.all(
-        color: colors.foreground1.withOpacity(0.5),
+        color: Colors.black.withOpacity(0.5),
         width: 2,
       ),
       borderRadius: BorderRadius.circular(8),
@@ -43,7 +43,7 @@ class ColorsWidget extends ConsumerWidget {
               borderRadius: BorderRadius.circular(8),
               border: Border.all(
                 color: Colors.black.withOpacity(0.3),
-                width: 1,
+                width: 2,
               ),
             ),
             width: 48,
@@ -71,7 +71,7 @@ class ColorsWidget extends ConsumerWidget {
           const SizedBox(width: 16),
           Icon(
             NomoIcons.arrowRight,
-            color: colors.foreground1,
+            color: context.theme.colors.foreground1,
             size: 24,
           ),
         ],

@@ -10,49 +10,58 @@ class SavedThemeNotifier extends _$SavedThemeNotifier {
   @override
   Future<List<NomoColors>> build() async {
     final themes = await _readThemesFromLocalStorage('nomoTheme');
-    if (themes.isEmpty) {
-      return [];
-    }
 
     return themes;
   }
 
   Future<List<NomoColors>> _readThemesFromLocalStorage(String prefix) async {
-    List<NomoColors> themes = [];
-    int count = 0;
-    while (true) {
-      final result = await WebonKitDart.getLocalStorage(key: '$prefix/$count');
-      if (result == null) {
-        break;
-      }
-      final themeFromLocalStorage = json.decode(result);
+    final result = await WebonKitDart.getLocalStorage(key: prefix);
 
-      count++;
-      themes.add(NomoColors.fromJson(themeFromLocalStorage));
-    }
-
-    if (themes.isEmpty) {
+    if (result == null) {
       return [];
     }
+
+    final decodedJson = jsonDecode(result);
+
+    List<Map<String, dynamic>> themesData =
+        List<Map<String, dynamic>>.from(decodedJson);
+
+    final themes = themesData.map((e) => NomoColors.fromJson(e)).toList();
 
     return themes;
   }
 
   void addTheme(NomoColors theme) async {
-    final themes = AsyncData(
+    var themes = AsyncData(
       await _readThemesFromLocalStorage('nomoTheme'),
     );
 
-    final count = themes.value.length;
+    themes.value.add(theme);
+
+    final themesJson = jsonEncode(themes.value).toString();
 
     await WebonKitDart.setLocalStorage(
-      key: 'nomoTheme/$count',
-      value: jsonEncode(theme),
+      key: 'nomoTheme',
+      value: themesJson,
     );
 
-    state = AsyncValue.data([
-      ...themes.value,
-      theme,
-    ]);
+    state = AsyncData(themes.value);
+  }
+
+  void removeTheme(int index) async {
+    var themes = AsyncData(
+      await _readThemesFromLocalStorage('nomoTheme'),
+    );
+
+    themes.value.removeAt(index);
+
+    final themesJson = jsonEncode(themes.value).toString();
+
+    await WebonKitDart.setLocalStorage(
+      key: 'nomoTheme',
+      value: themesJson,
+    );
+
+    state = AsyncValue.data(themes.value);
   }
 }
