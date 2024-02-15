@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nomo_ui_kit/app/nomo_app.dart';
 import 'package:nomo_ui_kit/theme/nomo_theme.dart';
 import 'package:swap_theme_webon/routes.dart';

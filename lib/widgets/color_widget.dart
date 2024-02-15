@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nomo_ui_kit/components/buttons/base/nomo_button.dart';
 import 'package:nomo_ui_kit/components/text/nomo_text.dart';
 import 'package:nomo_ui_kit/icons/nomo_icons.dart';
@@ -22,7 +22,7 @@ class ColorsWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final typo = context.theme.typography;
-    final colors = ref.watch(colorPaletteProvider);
+    final colors = ref.watch(colorPalatteNotifierProvider);
 
     return NomoButton(
       backgroundColor: colors.surface,

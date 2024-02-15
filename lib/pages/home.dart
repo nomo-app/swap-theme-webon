@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nomo_ui_kit/components/app/routebody/nomo_route_body.dart';
 import 'package:nomo_ui_kit/components/buttons/primary/nomo_primary_button.dart';
 import 'package:nomo_ui_kit/components/buttons/secondary/nomo_secondary_button.dart';
@@ -16,7 +16,7 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final colors = ref.watch(colorPaletteProvider);
+    final colors = ref.watch(colorPalatteNotifierProvider);
 
     return NomoRouteBody(
       builder: (context, route) => SingleChildScrollView(
@@ -31,7 +31,7 @@ class HomeScreen extends ConsumerWidget {
             PrimaryNomoButton(
               backgroundColor: colors.primary,
               onPressed: () {
-                ref.read(colorPaletteProvider.notifier).setTheme();
+                ref.read(colorPalatteNotifierProvider.notifier).setTheme();
               },
               height: 52,
               width: context.width * 0.8,
@@ -53,7 +53,7 @@ class HomeScreen extends ConsumerWidget {
                 color: colors.foreground1,
               ),
               onPressed: () {
-                ref.read(colorPaletteProvider.notifier).saveTheme();
+                ref.read(colorPalatteNotifierProvider.notifier).saveTheme();
               },
               text: "Save Theme",
             )

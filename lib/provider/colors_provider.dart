@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nomo_ui_kit/theme/sub/nomo_color_theme.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:swap_theme_webon/provider/saved_themes_provider.dart';
 import 'package:swap_theme_webon/theme.dart';
 
-final colorPaletteProvider =
-    StateNotifierProvider<ColorPalette, NomoColors>((ref) {
-  return ColorPalette(ref);
-});
+part 'colors_provider.g.dart';
 
-class ColorPalette extends StateNotifier<NomoColors> {
-  ColorPalette(this.ref) : super(ColorMode.LIGHT.theme.colors);
-
-  final Ref ref;
+@riverpod
+class ColorPalatteNotifier extends _$ColorPalatteNotifier {
+  @override
+  NomoColors build() {
+    return ColorMode.LIGHT.theme.colors;
+  }
 
   void updateColor(Color color, String name) {
     state = state.copyWith(
@@ -44,7 +44,7 @@ class ColorPalette extends StateNotifier<NomoColors> {
   }
 
   void saveTheme() {
-    ref.read(savedThemesProvider.notifier).addTheme(state);
+    ref.read(savedThemeNotifierProvider.notifier).addTheme(state);
   }
 }
 

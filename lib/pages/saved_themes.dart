@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nomo_router/router/nomo_navigator.dart';
 import 'package:nomo_ui_kit/components/app/routebody/nomo_route_body.dart';
 import 'package:nomo_ui_kit/components/text/nomo_text.dart';
@@ -14,8 +14,8 @@ class SavedThemes extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final colors = ref.watch(colorPaletteProvider);
-    final themes = ref.watch(savedThemesProvider);
+    final colors = ref.watch(colorPalatteNotifierProvider);
+    final themes = ref.watch(savedThemeNotifierProvider);
 
     return NomoRouteBody(
       builder: (context, route) {

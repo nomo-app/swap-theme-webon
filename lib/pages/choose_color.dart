@@ -1,6 +1,6 @@
 import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
 import 'package:nomo_router/nomo_router.dart';
 import 'package:nomo_ui_kit/components/app/routebody/nomo_route_body.dart';
@@ -16,7 +16,7 @@ class ChooseColor extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final colors = ref.watch(colorPaletteProvider);
+    final colors = ref.watch(colorPalatteNotifierProvider);
     return NomoRouteBody(
       builder: (context, route) {
         final colorArgs = route.urlArguments;
@@ -74,7 +74,7 @@ class ChooseColor extends ConsumerWidget {
                     Logger().i(color.toString());
 
                     ref
-                        .read(colorPaletteProvider.notifier)
+                        .read(colorPalatteNotifierProvider.notifier)
                         .updateColor(color, colorField.name);
                   },
                   borderRadius: 8,

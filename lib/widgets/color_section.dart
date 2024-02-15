@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nomo_router/nomo_router.dart';
 import 'package:swap_theme_webon/provider/colors_provider.dart';
 import 'package:swap_theme_webon/widgets/color_widget.dart';
@@ -21,7 +21,7 @@ class ColorSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final colors = ref.watch(colorPaletteProvider);
+    final colors = ref.watch(colorPalatteNotifierProvider);
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nomo_ui_kit/components/buttons/primary/nomo_primary_button.dart';
 import 'package:nomo_ui_kit/components/buttons/secondary/nomo_secondary_button.dart';
 import 'package:nomo_ui_kit/components/text/nomo_text.dart';
@@ -33,7 +33,7 @@ class ColorSectionHeading extends ConsumerWidget {
               color: context.theme.colors.error,
             ),
             onPressed: () {
-              ref.read(colorPaletteProvider.notifier).clearColors();
+              ref.read(colorPalatteNotifierProvider.notifier).clearColors();
             },
             type: ActionType.danger,
             padding: const EdgeInsets.all(8),
