@@ -16,46 +16,44 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final colors = ref.watch(colorPalatteNotifierProvider);
+
     return NomoRouteBody(
-      builder: (context, route) => SingleChildScrollView(
-        child: Column(
-          children: [
-            const HomeHeading(),
-            const SizedBox(height: 24),
-            const ColorSectionHeading(),
-            const SizedBox(height: 16),
-            const ColorSection(),
-            const SizedBox(height: 16),
-            PrimaryNomoButton(
-              backgroundColor: context.colors.primary,
-              onPressed: () {
-                ref.read(colorPalatteNotifierProvider.notifier).setTheme();
-              },
-              height: 52,
-              width: context.width * 0.8,
-              padding: const EdgeInsets.all(8),
-              child: NomoText(
-                "Set Theme",
-                style: context.theme.typography.b3.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: context.theme.colors.onPrimary,
-                ),
-              ),
+      children: [
+        const HomeHeading(),
+        const SizedBox(height: 24),
+        const ColorSectionHeading(),
+        const SizedBox(height: 16),
+        const ColorSection(),
+        const SizedBox(height: 16),
+        PrimaryNomoButton(
+          backgroundColor: context.colors.primary,
+          onPressed: () {
+            ref.read(colorPalatteNotifierProvider.notifier).setTheme(colors);
+          },
+          height: 52,
+          width: context.width * 0.8,
+          padding: const EdgeInsets.all(8),
+          child: NomoText(
+            "Set Theme",
+            style: context.theme.typography.b3.copyWith(
+              fontWeight: FontWeight.bold,
+              color: context.theme.colors.onPrimary,
             ),
-            const DividerWidget(),
-            SecondaryNomoButton(
-              width: context.width * 0.8,
-              height: 52,
-              padding: const EdgeInsets.all(8),
-              textStyle: context.theme.typography.b3,
-              onPressed: () {
-                ref.read(colorPalatteNotifierProvider.notifier).saveTheme();
-              },
-              text: "Save Theme",
-            )
-          ],
+          ),
         ),
-      ),
+        const DividerWidget(),
+        SecondaryNomoButton(
+          width: context.width * 0.8,
+          height: 52,
+          padding: const EdgeInsets.all(8),
+          textStyle: context.theme.typography.b3,
+          onPressed: () {
+            ref.read(colorPalatteNotifierProvider.notifier).saveTheme();
+          },
+          text: "Save Theme",
+        )
+      ],
     );
   }
 }

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logger/logger.dart';
 import 'package:nomo_ui_kit/theme/sub/nomo_color_theme.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:swap_theme_webon/provider/saved_themes_provider.dart';
 import 'package:swap_theme_webon/theme.dart';
+import 'package:webon_kit_dart/webon_kit_dart.dart';
 
 part 'colors_provider.g.dart';
 
@@ -38,9 +40,10 @@ class ColorPalatteNotifier extends _$ColorPalatteNotifier {
     state = ColorMode.LIGHT.theme.colors;
   }
 
-  void setTheme() {
-    //TODO: Implement setTheme
-    throw UnimplementedError();
+  void setTheme(NomoColors colors) async {
+    Logger().i("Setting Theme");
+
+    await WebonKitDart.setColors(colors);
   }
 
   void saveTheme() {

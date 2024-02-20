@@ -166,3 +166,10 @@ function convertFlutterColorIntoCSSColor(flutterColor) {
     }
     return "#" + cssColor;
 }
+
+export async function setNomoColors(args) {
+    console.log("setNomoColors in JS function", args);
+    return await invokeNomoFunction("nomoSetColors", args);
+}
+
+window.setNomoColors = setNomoColors;

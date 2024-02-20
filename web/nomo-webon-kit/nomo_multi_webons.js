@@ -158,5 +158,16 @@ export const nomoLocalStorage = {
     },
 };
 
-window.nomoSetLocalStorageItem = nomoLocalStorage.setItem;
-window.nomoGetLocalStorageItem = nomoLocalStorage.getItem;
+
+const localStorageFunctions = {
+    getItem: async function (key, options) {
+        return localStorage.getItem(key);
+    },
+    setItem: async function (key, value) {
+        localStorage.setItem(key, value);
+        return;
+    }
+}
+
+window.nomoSetLocalStorageItem = localStorageFunctions.setItem;
+window.nomoGetLocalStorageItem = localStorageFunctions.getItem;

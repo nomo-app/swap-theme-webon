@@ -18,7 +18,7 @@ class ChooseColor extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final colors = ref.watch(colorPalatteNotifierProvider);
     return NomoRouteBody(
-      builder: (context, route) {
+      childrenBuilder: (context, route) {
         final colorArgs = route.urlArguments;
 
         ColorFields colorField = colorArgs?["name"] ?? ColorFields.primary;
@@ -34,67 +34,65 @@ class ChooseColor extends ConsumerWidget {
         };
 
         Logger().i(colorArgs);
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Row(
-              children: [
-                IconButton(
-                  color: colors.foreground1,
-                  onPressed: () => NomoNavigator.of(context).pop(),
-                  icon: const Icon(NomoIcons.arrowLeft),
-                ),
-                const Spacer(),
-                NomoText(
-                  colorField.name,
-                  style: context.theme.typography.h2,
-                  color: colors.foreground1,
-                ),
-                const Spacer(),
-                const SizedBox(width: 48),
-              ],
-            ),
-            SizedBox(
-              width: 400,
-              height: 500,
-              child: Material(
-                color: colors.background1,
-                child: ColorPicker(
-                  color: startColor,
-                  enableOpacity: true,
-                  enableShadesSelection: true,
-                  pickersEnabled: const <ColorPickerType, bool>{
-                    ColorPickerType.both: false,
-                    ColorPickerType.primary: false,
-                    ColorPickerType.accent: false,
-                    ColorPickerType.wheel: true,
-                  },
-                  onColorChanged: (Color color) {},
-                  onColorChangeEnd: (Color color) {
-                    Logger().i(color.toString());
 
-                    ref
-                        .read(colorPalatteNotifierProvider.notifier)
-                        .updateColor(color, colorField.name);
-                  },
-                  borderRadius: 8,
-                  spacing: 4,
-                  wheelDiameter: 200,
-                  wheelWidth: 16,
-                  showColorName: true,
-                  showColorCode: true,
-                  copyPasteBehavior: const ColorPickerCopyPasteBehavior(
-                    longPressMenu: true,
-                  ),
-                  actionButtons: const ColorPickerActionButtons(),
+        return [
+          Row(
+            children: [
+              IconButton(
+                color: colors.foreground1,
+                onPressed: () => NomoNavigator.of(context).pop(),
+                icon: const Icon(NomoIcons.arrowLeft),
+              ),
+              const Spacer(),
+              NomoText(
+                colorField.name,
+                style: context.theme.typography.h2,
+                color: colors.foreground1,
+              ),
+              const Spacer(),
+              const SizedBox(width: 48),
+            ],
+          ),
+          SizedBox(
+            width: 400,
+            height: 500,
+            child: Material(
+              color: colors.background1,
+              child: ColorPicker(
+                color: startColor,
+                enableOpacity: true,
+                enableShadesSelection: true,
+                pickersEnabled: const <ColorPickerType, bool>{
+                  ColorPickerType.both: false,
+                  ColorPickerType.primary: false,
+                  ColorPickerType.accent: false,
+                  ColorPickerType.wheel: true,
+                },
+                onColorChanged: (Color color) {},
+                onColorChangeEnd: (Color color) {
+                  Logger().i(color.toString());
+
+                  ref
+                      .read(colorPalatteNotifierProvider.notifier)
+                      .updateColor(color, colorField.name);
+                },
+                borderRadius: 8,
+                spacing: 4,
+                wheelDiameter: 200,
+                wheelWidth: 16,
+                showColorName: true,
+                showColorCode: true,
+                copyPasteBehavior: const ColorPickerCopyPasteBehavior(
+                  longPressMenu: true,
                 ),
+                actionButtons: const ColorPickerActionButtons(),
               ),
             ),
-            ExampleTheme(
-              theme: colors,
-            ),
-          ],
-        );
+          ),
+          ExampleTheme(
+            theme: colors,
+          ),
+        ];
       },
     );
   }
