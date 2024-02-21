@@ -7,6 +7,5 @@ analyzer:
   plugins:
     - custom_lint
   exclude:
-    - packages/nomo-ui-kit
-    - packages/webon-kit-dart
+    - packages/
     - lib/routes.g.dart

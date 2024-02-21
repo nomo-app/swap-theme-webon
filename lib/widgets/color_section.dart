@@ -23,73 +23,66 @@ class ColorSection extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final colors = ref.watch(colorPalatteNotifierProvider);
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ColorsWidget(
-              color: colors.primary,
-              name: "Primary",
-              description: "The primary color of the app",
-              onTap: () {
-                NomoNavigator.of(context)
-                    .pushNamed("/chooseColor", urlArguments: {
-                  "name": ColorFields.primary,
-                });
-              },
-            ),
-            ColorsWidget(
-              color: colors.onPrimary,
-              name: "On Primary",
-              description: "The color of the text on the primary color",
-              onTap: () {
-                NomoNavigator.of(context)
-                    .pushNamed("/chooseColor", urlArguments: {
-                  "name": ColorFields.onPrimary,
-                });
-              },
-            ),
-            ColorsWidget(
-              color: colors.foreground1,
-              name: "Foreground",
-              description:
-                  "The color of the text on the background (text color)",
-              onTap: () {
-                NomoNavigator.of(context)
-                    .pushNamed("/chooseColor", urlArguments: {
-                  "name": ColorFields.foreground1,
-                });
-              },
-            ),
-            ColorsWidget(
-              color: colors.background1,
-              name: "Background",
-              description: "The background color of the app",
-              onTap: () {
-                NomoNavigator.of(context)
-                    .pushNamed("/chooseColor", urlArguments: {
-                  "name": ColorFields.background1,
-                });
-              },
-            ),
-            ColorsWidget(
-              color: colors.surface,
-              name: "Surface",
-              description: "The surface color of the app (cards, etc)",
-              onTap: () {
-                NomoNavigator.of(context)
-                    .pushNamed("/chooseColor", urlArguments: {
-                  "name": ColorFields.surface,
-                });
-              },
-            ),
-          ],
+        ColorsWidget(
+          color: colors.primary,
+          name: "Primary",
+          description: "The primary color of the app",
+          onTap: () {
+            NomoNavigator.of(context)
+                .pushNamed("/chooseColor", urlArguments: {
+              "name": ColorFields.primary,
+            });
+          },
+        ),
+        ColorsWidget(
+          color: colors.onPrimary,
+          name: "On Primary",
+          description: "The color of the text on the primary color",
+          onTap: () {
+            NomoNavigator.of(context)
+                .pushNamed("/chooseColor", urlArguments: {
+              "name": ColorFields.onPrimary,
+            });
+          },
+        ),
+        ColorsWidget(
+          color: colors.foreground1,
+          name: "Foreground",
+          description:
+              "The color of the text on the background (text color)",
+          onTap: () {
+            NomoNavigator.of(context)
+                .pushNamed("/chooseColor", urlArguments: {
+              "name": ColorFields.foreground1,
+            });
+          },
+        ),
+        ColorsWidget(
+          color: colors.background1,
+          name: "Background",
+          description: "The background color of the app",
+          onTap: () {
+            NomoNavigator.of(context)
+                .pushNamed("/chooseColor", urlArguments: {
+              "name": ColorFields.background1,
+            });
+          },
+        ),
+        ColorsWidget(
+          color: colors.surface,
+          name: "Surface",
+          description: "The surface color of the app (cards, etc)",
+          onTap: () {
+            NomoNavigator.of(context)
+                .pushNamed("/chooseColor", urlArguments: {
+              "name": ColorFields.surface,
+            });
+          },
         ),
       ],
     );
