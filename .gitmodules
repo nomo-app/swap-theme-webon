@@ -1,6 +1,6 @@
-[submodule "packages/nomo-ui-kit"]
-	path = packages/nomo-ui-kit
-	url = https://github.com/nomo-app/nomo-ui-kit.git
 [submodule "packages/webon-kit-dart"]
 	path = packages/webon-kit-dart
 	url = https://github.com/nomo-app/webon-kit-dart.git
+[submodule "packages/nomo-ui-kit"]
+	path = packages/nomo-ui-kit
+	url = https://github.com/nomo-app/nomo-ui-kit.git
