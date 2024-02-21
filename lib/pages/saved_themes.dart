@@ -24,7 +24,7 @@ class SavedThemes extends ConsumerWidget {
             Row(
               children: [
                 IconButton(
-                  color: colors.foreground1,
+                  color: context.colors.foreground1,
                   onPressed: () {
                     NomoNavigator.of(context).pop();
                   },
@@ -35,7 +35,7 @@ class SavedThemes extends ConsumerWidget {
                   "Saved Themes",
                   style: context.theme.typography.h2,
                   fontWeight: FontWeight.bold,
-                  color: colors.foreground1,
+                  color: context.colors.foreground1,
                 ),
                 const Spacer(),
                 const SizedBox(width: 48),

@@ -25,9 +25,10 @@ class ColorsWidget extends ConsumerWidget {
     final colors = ref.watch(colorPalatteNotifierProvider);
 
     return NomoButton(
-      width: context.width - 50,
+      expandToConstraints: true,
       backgroundColor: colors.surface,
       margin: const EdgeInsets.only(bottom: 16),
+      width: context.width * 0.9,
       padding: const EdgeInsets.all(16),
       border: Border.all(
         color: Colors.black.withOpacity(0.5),
