@@ -5,7 +5,6 @@ import 'package:nomo_ui_kit/components/app/routebody/nomo_route_body.dart';
 import 'package:nomo_ui_kit/components/text/nomo_text.dart';
 import 'package:nomo_ui_kit/icons/nomo_icons.dart';
 import 'package:nomo_ui_kit/theme/nomo_theme.dart';
-import 'package:swap_theme_webon/provider/colors_provider.dart';
 import 'package:swap_theme_webon/provider/saved_themes_provider.dart';
 import 'package:swap_theme_webon/widgets/saved_theme_item.dart';
 
@@ -14,7 +13,6 @@ class SavedThemes extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final colors = ref.watch(colorPalatteNotifierProvider);
     final themes = ref.watch(savedThemeNotifierProvider);
 
     return NomoRouteBody(
@@ -47,13 +45,13 @@ class SavedThemes extends ConsumerWidget {
               NomoText(
                 themes.error.toString(),
                 style: context.theme.typography.h2,
-                color: colors.error,
+                color: context.theme.colors.error,
               ),
             if (themes.hasValue && themes.value!.isEmpty)
               NomoText(
                 "No saved themes",
                 style: context.theme.typography.h2,
-                color: colors.foreground1,
+                color: context.colors.foreground1,
               ),
             if (themes.hasValue && themes.value!.isNotEmpty)
               Expanded(

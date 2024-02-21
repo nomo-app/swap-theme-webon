@@ -61,7 +61,9 @@ class SavedThemeItem extends ConsumerWidget {
       children: [
         const SizedBox(height: 16),
         ExampleTheme(
+          isEditAble: true,
           theme: theme,
+          themeIndex: index,
         ),
         const SizedBox(height: 16),
       ],

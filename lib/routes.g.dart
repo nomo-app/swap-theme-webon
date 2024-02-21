@@ -11,8 +11,14 @@ class AppRouter extends NomoAppRouter {
       : super(
           {
             HomeScreenRoute.path: ([a]) => HomeScreenRoute(),
-            ChooseColorRoute.path: ([a]) => ChooseColorRoute(),
+            ChooseColorRoute.path: ([a]) {
+              final typedArgs = a as ChooseColorArguments?;
+              return ChooseColorRoute(
+                isEditTheme: typedArgs?.isEditTheme ?? false,
+              );
+            },
             SavedThemesRoute.path: ([a]) => SavedThemesRoute(),
+            EditThemeRoute.path: ([a]) => EditThemeRoute(),
           },
           _routes.expanded.where((r) => r is! NestedPageRouteInfo).toList(),
           _routes.expanded.whereType<NestedPageRouteInfo>().toList(),
@@ -33,14 +39,22 @@ class HomeScreenRoute extends AppRoute implements HomeScreenArguments {
 }
 
 class ChooseColorArguments {
-  const ChooseColorArguments();
+  final bool? isEditTheme;
+  const ChooseColorArguments({
+    required this.isEditTheme,
+  });
 }
 
 class ChooseColorRoute extends AppRoute implements ChooseColorArguments {
-  ChooseColorRoute()
-      : super(
+  @override
+  final bool? isEditTheme;
+  ChooseColorRoute({
+    this.isEditTheme = false,
+  }) : super(
           name: '/chooseColor',
-          page: ChooseColor(),
+          page: ChooseColor(
+            isEditTheme: isEditTheme,
+          ),
         );
   static String path = '/chooseColor';
 }
@@ -56,4 +70,17 @@ class SavedThemesRoute extends AppRoute implements SavedThemesArguments {
           page: SavedThemes(),
         );
   static String path = '/savedThemes';
+}
+
+class EditThemeArguments {
+  const EditThemeArguments();
+}
+
+class EditThemeRoute extends AppRoute implements EditThemeArguments {
+  EditThemeRoute()
+      : super(
+          name: '/editTheme',
+          page: EditTheme(),
+        );
+  static String path = '/editTheme';
 }

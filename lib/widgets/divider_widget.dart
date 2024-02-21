@@ -11,7 +11,7 @@ class DividerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: context.width * 0.8,
-      margin: const EdgeInsets.symmetric(vertical: 16),
+      margin: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

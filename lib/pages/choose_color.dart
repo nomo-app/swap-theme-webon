@@ -12,7 +12,10 @@ import 'package:swap_theme_webon/widgets/color_section.dart';
 import 'package:swap_theme_webon/widgets/example_theme.dart';
 
 class ChooseColor extends ConsumerWidget {
-  const ChooseColor({super.key});
+
+  final bool? isEditTheme;
+
+  const ChooseColor({super.key, this.isEditTheme = false});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

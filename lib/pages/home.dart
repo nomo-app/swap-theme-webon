@@ -21,15 +21,16 @@ class HomeScreen extends ConsumerWidget {
     return NomoRouteBody(
       children: [
         const HomeHeading(),
-        const SizedBox(height: 24),
+        const SizedBox(height: 8),
         const ColorSectionHeading(),
         const SizedBox(height: 16),
         const ColorSection(),
-        const SizedBox(height: 16),
+        // const SizedBox(height: 8),
         PrimaryNomoButton(
           backgroundColor: context.colors.primary,
           onPressed: () {
             ref.read(colorPalatteNotifierProvider.notifier).setTheme(colors);
+            ref.read(colorPalatteNotifierProvider.notifier).clearColors();
           },
           height: 52,
           width: context.width * 0.8,
@@ -50,6 +51,7 @@ class HomeScreen extends ConsumerWidget {
           textStyle: context.theme.typography.b3,
           onPressed: () {
             ref.read(colorPalatteNotifierProvider.notifier).saveTheme();
+            ref.read(colorPalatteNotifierProvider.notifier).clearColors();
           },
           text: "Save Theme",
         )

@@ -54,7 +54,7 @@ class ColorsWidget extends ConsumerWidget {
           NomoText(
             name,
             style: typo.b3.copyWith(
-              color: colors.foreground1,
+              color: context.colors.foreground1,
             ),
           ),
           const SizedBox(width: 16),
@@ -65,7 +65,7 @@ class ColorsWidget extends ConsumerWidget {
               maxLines: 3,
               overflow: TextOverflow.ellipsis,
               style: typo.b2.copyWith(
-                color: colors.foreground1,
+                color: context.colors.foreground1,
               ),
             ),
           ),

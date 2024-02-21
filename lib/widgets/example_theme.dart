@@ -1,25 +1,58 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:nomo_router/nomo_router.dart';
 import 'package:nomo_ui_kit/components/buttons/primary/nomo_primary_button.dart';
 import 'package:nomo_ui_kit/components/buttons/secondary/nomo_secondary_button.dart';
 import 'package:nomo_ui_kit/components/card/nomo_card.dart';
 import 'package:nomo_ui_kit/components/text/nomo_text.dart';
 import 'package:nomo_ui_kit/theme/nomo_theme.dart';
 import 'package:nomo_ui_kit/theme/sub/nomo_color_theme.dart';
+import 'package:swap_theme_webon/provider/colors_provider.dart';
 
-class ExampleTheme extends StatelessWidget {
+class ExampleTheme extends ConsumerWidget {
   final NomoColors theme;
+  final bool? isEditAble;
+  final int? themeIndex;
 
-  const ExampleTheme({required this.theme, super.key});
+  const ExampleTheme(
+      {required this.theme,
+      this.isEditAble = false,
+      super.key,
+      this.themeIndex});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return NomoCard(
       backgroundColor: theme.surface,
       elevation: 2,
       borderRadius: BorderRadius.circular(8),
-      padding: const EdgeInsets.all(32),
+      padding: isEditAble!
+          ? const EdgeInsets.only(bottom: 16)
+          : const EdgeInsets.all(32),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
+          if (isEditAble != null && isEditAble == true) ...[
+            IconButton(
+              iconSize: 36,
+              onPressed: () {
+                ref
+                    .read(colorPalatteNotifierProvider.notifier)
+                    .setColors(theme);
+
+                NomoNavigator.of(context).pushNamed(
+                  "/editTheme",
+                  urlArguments: {
+                    "themeIndex": themeIndex,
+                  },
+                );
+              },
+              icon:
+                  Icon(Icons.mode_edit_outline_outlined, color: theme.primary),
+            ),
+            const SizedBox(height: 8),
+          ],
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
