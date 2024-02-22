@@ -31,7 +31,17 @@ class HomeScreen extends ConsumerWidget {
           backgroundColor: context.colors.primary,
           onPressed: () {
             ref.read(colorPalatteNotifierProvider.notifier).setTheme(colors);
-            ref.read(colorPalatteNotifierProvider.notifier).clearColors();
+
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                backgroundColor: context.colors.background1,
+                content: NomoText(
+                  "Your theme has been set successfully!",
+                  style: context.theme.typography.b3,
+                ),
+                duration: const Duration(seconds: 4),
+              ),
+            );
           },
           height: 52,
           width: context.width * 0.8,

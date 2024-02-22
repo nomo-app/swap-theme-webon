@@ -39,10 +39,14 @@ class ColorPalatteNotifier extends _$ColorPalatteNotifier {
     state = ColorMode.LIGHT.theme.colors;
   }
 
+  void changeColorTheme(NomoColors colors) {
+    state = colors;
+  }
+
   void setTheme(NomoColors colors) async {
     Logger().i("Setting Theme");
 
-    ref.read(savedThemeNotifierProvider.notifier).addTheme(colors);
+    //ref.read(savedThemeNotifierProvider.notifier).addTheme(colors);
 
     await WebonKitDart.setColors(colors);
   }
