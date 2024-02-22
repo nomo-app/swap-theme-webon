@@ -56,6 +56,10 @@ class HomeScreen extends ConsumerWidget {
         ),
         const DividerWidget(),
         SecondaryNomoButton(
+          border: Border.all(
+            color: context.colors.foreground1,
+            width: 1.5,
+          ),
           width: context.width * 0.8,
           height: 52,
           padding: const EdgeInsets.all(8),

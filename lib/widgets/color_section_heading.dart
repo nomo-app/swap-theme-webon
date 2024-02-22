@@ -37,6 +37,10 @@ class ColorSectionHeading extends ConsumerWidget {
                 ref
                     .read(colorPalatteNotifierProvider.notifier)
                     .changeColorTheme(themeProvider.colorTheme.colors);
+
+                ref
+                    .read(colorPalatteNotifierProvider.notifier)
+                    .updateBrigthness(Brightness.light);
               },
               icon: const Icon(
                 Icons.light_mode,
@@ -52,6 +56,9 @@ class ColorSectionHeading extends ConsumerWidget {
                 ref
                     .read(colorPalatteNotifierProvider.notifier)
                     .changeColorTheme(themeProvider.colorTheme.colors);
+                ref
+                    .read(colorPalatteNotifierProvider.notifier)
+                    .updateBrigthness(Brightness.dark);
               },
               icon: const Icon(
                 Icons.dark_mode,

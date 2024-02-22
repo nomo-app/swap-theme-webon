@@ -35,6 +35,10 @@ class ColorPalatteNotifier extends _$ColorPalatteNotifier {
     );
   }
 
+  void updateBrigthness(Brightness brightness) {
+    state = state.copyWith(brightness: brightness);
+  }
+
   void clearColors() {
     state = ColorMode.LIGHT.theme.colors;
   }
