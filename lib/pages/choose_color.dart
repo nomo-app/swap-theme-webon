@@ -12,7 +12,6 @@ import 'package:swap_theme_webon/widgets/color_section.dart';
 import 'package:swap_theme_webon/widgets/example_theme.dart';
 
 class ChooseColor extends ConsumerWidget {
-
   final bool? isEditTheme;
 
   const ChooseColor({super.key, this.isEditTheme = false});
@@ -58,7 +57,6 @@ class ChooseColor extends ConsumerWidget {
           ),
           SizedBox(
             width: 400,
-            height: 500,
             child: Material(
               color: colors.background1,
               child: ColorPicker(
@@ -83,8 +81,8 @@ class ChooseColor extends ConsumerWidget {
                 spacing: 4,
                 wheelDiameter: 200,
                 wheelWidth: 16,
-                showColorName: true,
-                showColorCode: true,
+                showColorName: false,
+                showColorCode: false,
                 copyPasteBehavior: const ColorPickerCopyPasteBehavior(
                   longPressMenu: true,
                 ),
