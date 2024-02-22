@@ -54,4 +54,8 @@ class ColorPalatteNotifier extends _$ColorPalatteNotifier {
   void setColors(NomoColors colors) {
     state = colors;
   }
+
+  NomoColors getCurrentColors() {
+    return state;
+  }
 }

@@ -7,7 +7,7 @@ part of 'colors_provider.dart';
 // **************************************************************************
 
 String _$colorPalatteNotifierHash() =>
-    r'd225129af89f82837b03e3c1531ab0e2d6a4de04';
+    r'd8289b83d8e42558b4c6a4b598080ed47fbc9ef5';
 
 /// See also [ColorPalatteNotifier].
 @ProviderFor(ColorPalatteNotifier)

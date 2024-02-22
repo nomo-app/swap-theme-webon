@@ -41,16 +41,13 @@ class EditTheme extends ConsumerWidget {
               const SizedBox(width: 48),
             ],
           ),
+          const SizedBox(height: 16),
           const ColorSection(),
           PrimaryNomoButton(
             onPressed: () {
-              // something not working propperly
-              ref.read(colorPalatteNotifierProvider.notifier).saveTheme();
               ref
                   .read(savedThemeNotifierProvider.notifier)
-                  .removeTheme(themeIndex);
-
-              ref.invalidate(colorPalatteNotifierProvider);
+                  .editSavedTheme(themeIndex);
               NomoNavigator.of(context).pop();
             },
             text: "Save Theme",
