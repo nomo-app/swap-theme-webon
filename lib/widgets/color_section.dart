@@ -32,53 +32,39 @@ class ColorSection extends ConsumerWidget {
           color: colors.primary,
           name: "Primary",
           description: "The primary color of the app",
-          onTap: () {
-            NomoNavigator.of(context).pushNamed("/chooseColor", urlArguments: {
-              "name": ColorFields.primary,
-            });
-          },
+          onTap: () => _onTap(ColorFields.primary, context),
         ),
         ColorsWidget(
           color: colors.onPrimary,
           name: "On Primary",
           description: "The color of the text on the primary color",
-          onTap: () {
-            NomoNavigator.of(context).pushNamed("/chooseColor", urlArguments: {
-              "name": ColorFields.onPrimary,
-            });
-          },
+          onTap: () => _onTap(ColorFields.onPrimary, context),
         ),
         ColorsWidget(
           color: colors.foreground1,
           name: "Foreground",
           description: "The color of the text on the background (text color)",
-          onTap: () {
-            NomoNavigator.of(context).pushNamed("/chooseColor", urlArguments: {
-              "name": ColorFields.foreground1,
-            });
-          },
+          onTap: () => _onTap(ColorFields.foreground1, context),
         ),
         ColorsWidget(
           color: colors.background1,
           name: "Background",
           description: "The background color of the app",
-          onTap: () {
-            NomoNavigator.of(context).pushNamed("/chooseColor", urlArguments: {
-              "name": ColorFields.background1,
-            });
-          },
+          onTap: () => _onTap(ColorFields.background1, context),
         ),
         ColorsWidget(
           color: colors.surface,
           name: "Surface",
           description: "The surface color of the app (cards, etc)",
-          onTap: () {
-            NomoNavigator.of(context).pushNamed("/chooseColor", urlArguments: {
-              "name": ColorFields.surface,
-            });
-          },
+          onTap: () => _onTap(ColorFields.surface, context),
         ),
       ],
     );
+  }
+
+  _onTap(ColorFields field, BuildContext context) {
+    NomoNavigator.of(context).pushNamed("/chooseColor", urlArguments: {
+      "name": field,
+    });
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:nomo_router/router/nomo_navigator.dart';
 import 'package:nomo_ui_kit/components/app/routebody/nomo_route_body.dart';
 import 'package:nomo_ui_kit/components/buttons/primary/nomo_primary_button.dart';
 import 'package:nomo_ui_kit/components/buttons/secondary/nomo_secondary_button.dart';
@@ -52,6 +53,8 @@ class HomeScreen extends ConsumerWidget {
           onPressed: () {
             ref.read(colorPalatteNotifierProvider.notifier).saveTheme();
             ref.read(colorPalatteNotifierProvider.notifier).clearColors();
+
+            NomoNavigator.of(context).pushNamed("/savedThemes");
           },
           text: "Save Theme",
         )

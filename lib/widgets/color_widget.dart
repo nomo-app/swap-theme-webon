@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nomo_ui_kit/components/buttons/base/nomo_button.dart';
 import 'package:nomo_ui_kit/components/text/nomo_text.dart';
 import 'package:nomo_ui_kit/icons/nomo_icons.dart';
 import 'package:nomo_ui_kit/theme/nomo_theme.dart';
-import 'package:swap_theme_webon/provider/colors_provider.dart';
 
-class ColorsWidget extends ConsumerWidget {
+class ColorsWidget extends StatelessWidget {
   final Color color;
   final String name;
   final Function() onTap;
@@ -20,13 +18,12 @@ class ColorsWidget extends ConsumerWidget {
   });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final typo = context.theme.typography;
-    final colors = ref.watch(colorPalatteNotifierProvider);
 
     return NomoButton(
       expandToConstraints: true,
-      backgroundColor: colors.surface,
+      backgroundColor: context.colors.surface,
       margin: const EdgeInsets.only(bottom: 16),
       width: context.width * 0.9,
       padding: const EdgeInsets.all(16),
