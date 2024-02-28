@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:nomo_ui_kit/components/buttons/primary/nomo_primary_button.dart';
 import 'package:nomo_ui_kit/components/buttons/secondary/nomo_secondary_button.dart';
 import 'package:nomo_ui_kit/components/text/nomo_text.dart';
 import 'package:nomo_ui_kit/theme/nomo_theme.dart';
@@ -24,19 +23,24 @@ class ColorSectionHeading extends ConsumerWidget {
         children: [
           NomoText(
             "Choose a color to start",
-            style: context.theme.typography.b3,
+            style: context.theme.typography.h1,
             color: context.theme.colors.foreground1,
           ),
           const Spacer(),
           if (themeProvider.colorTheme == ColorMode.DARK.theme)
-            IconButton(
+            SecondaryNomoButton(
+              height: 40,
+              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
               onPressed: () {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-                    backgroundColor: context.theme.colors.background1,
+                    backgroundColor: context.theme.colors.foreground1,
                     content: NomoText(
                       "Currently creating a light theme!",
-                      style: context.theme.typography.b3,
+                      textAlign: TextAlign.center,
+                      style: context.theme.typography.b3.copyWith(
+                        color: context.theme.colors.primary,
+                      ),
                     ),
                     duration: const Duration(seconds: 1),
                   ),
@@ -52,20 +56,34 @@ class ColorSectionHeading extends ConsumerWidget {
                     .read(colorPalatteNotifierProvider.notifier)
                     .updateBrigthness(Brightness.light);
               },
-              icon: const Icon(
-                Icons.light_mode,
-                color: Colors.white,
+              child: Row(
+                children: [
+                  NomoText(
+                    "Color Mode",
+                    style: context.theme.typography.b3,
+                  ),
+                  const SizedBox(width: 8),
+                  const Icon(
+                    Icons.light_mode,
+                    color: Colors.white,
+                  ),
+                ],
               ),
             )
           else
-            IconButton(
+            SecondaryNomoButton(
+              height: 40,
+              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
               onPressed: () {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-                    backgroundColor: context.theme.colors.background1,
+                    backgroundColor: context.theme.colors.foreground1,
                     content: NomoText(
                       "Currently creating a dark theme!",
-                      style: context.theme.typography.b3,
+                      textAlign: TextAlign.center,
+                      style: context.theme.typography.b3.copyWith(
+                        color: context.theme.colors.primary,
+                      ),
                     ),
                     duration: const Duration(seconds: 1),
                   ),
@@ -80,22 +98,19 @@ class ColorSectionHeading extends ConsumerWidget {
                     .read(colorPalatteNotifierProvider.notifier)
                     .updateBrigthness(Brightness.dark);
               },
-              icon: const Icon(
-                Icons.dark_mode,
+              child: Row(
+                children: [
+                  NomoText(
+                    "Color Mode",
+                    style: context.theme.typography.b3,
+                  ),
+                  const SizedBox(width: 8),
+                  const Icon(
+                    Icons.dark_mode,
+                  ),
+                ],
               ),
             ),
-          const SizedBox(width: 16),
-          SecondaryNomoButton(
-            text: "Clear Theme",
-            textStyle: context.theme.typography.b3.copyWith(
-              color: context.theme.colors.error,
-            ),
-            onPressed: () {
-              ref.read(colorPalatteNotifierProvider.notifier).clearColors();
-            },
-            type: ActionType.danger,
-            padding: const EdgeInsets.all(8),
-          )
         ],
       ),
     );
