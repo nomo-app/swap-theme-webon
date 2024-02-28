@@ -1,48 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nomo_router/router/nomo_navigator.dart';
+import 'package:nomo_ui_kit/components/buttons/secondary/nomo_secondary_button.dart';
 import 'package:nomo_ui_kit/components/text/nomo_text.dart';
 import 'package:nomo_ui_kit/theme/nomo_theme.dart';
-import 'package:swap_theme_webon/provider/colors_provider.dart';
 
-class HomeHeading extends ConsumerWidget {
+class HomeHeading extends StatelessWidget {
   const HomeHeading({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return SizedBox(
       width: context.width * 0.8,
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Expanded(
-            flex: 5,
             child: NomoText(
-              'Welcome to the Swap Theme WebOn!',
-              style: context.theme.typography.h1,
-              color: context.colors.foreground1,
+              "Choose a color to start!",
+              maxLines: 2,
+              style: context.theme.typography.h2,
+              color: context.theme.colors.foreground1,
               fontWeight: FontWeight.bold,
             ),
           ),
-          const Spacer(),
-          IconButton(
-            iconSize: 32,
-            onPressed: () {
-              ref.read(colorPalatteNotifierProvider.notifier).clearColors();
-            },
-            icon: const Icon(Icons.delete_outline_outlined),
-            color: context.colors.error,
-          ),
-          IconButton(
-            iconSize: 32,
+          SecondaryNomoButton(
+            height: 50,
+            padding: const EdgeInsets.all(8),
             onPressed: () {
               NomoNavigator.of(context).pushNamed("/savedThemes");
             },
-            icon: const Icon(
-              Icons.save,
+            child: NomoText(
+              "Saved Themes",
+              style: context.typography.b3,
             ),
-            color: context.colors.foreground1,
           )
         ],
       ),

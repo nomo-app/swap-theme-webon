@@ -21,15 +21,24 @@ class ColorSectionHeading extends ConsumerWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          NomoText(
-            "Choose a color to start",
-            style: context.theme.typography.h1,
-            color: context.theme.colors.foreground1,
+          SecondaryNomoButton(
+            foregroundColor: Colors.red,
+            padding: const EdgeInsets.all(8),
+            height: 50,
+            onPressed: () {
+              ref.read(colorPalatteNotifierProvider.notifier).clearColors();
+            },
+            child: NomoText(
+              "Reset Theme",
+              style: context.typography.b3.copyWith(
+                color: context.theme.colors.error,
+              ),
+            ),
           ),
           const Spacer(),
           if (themeProvider.colorTheme == ColorMode.DARK.theme)
             SecondaryNomoButton(
-              height: 40,
+              height: 50,
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
               onPressed: () {
                 ScaffoldMessenger.of(context).showSnackBar(
@@ -72,7 +81,7 @@ class ColorSectionHeading extends ConsumerWidget {
             )
           else
             SecondaryNomoButton(
-              height: 40,
+              height: 50,
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
               onPressed: () {
                 ScaffoldMessenger.of(context).showSnackBar(

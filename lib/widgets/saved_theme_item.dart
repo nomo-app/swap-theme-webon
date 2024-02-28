@@ -25,6 +25,7 @@ class SavedThemeItem extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Expandable(
+      initiallyExpanded: true,
       childrenPadding: const EdgeInsets.symmetric(horizontal: 12),
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
