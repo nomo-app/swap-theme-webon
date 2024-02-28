@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:nomo_router/nomo_router.dart';
 import 'package:nomo_ui_kit/components/buttons/primary/nomo_primary_button.dart';
 import 'package:nomo_ui_kit/components/expandable/expandable.dart';
 import 'package:nomo_ui_kit/components/text/nomo_text.dart';
@@ -44,6 +45,30 @@ class SavedThemeItem extends ConsumerWidget {
             ),
             onPressed: () {
               ref.read(colorPalatteNotifierProvider.notifier).setTheme(theme);
+
+              NomoNavigator.of(context).pop();
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  backgroundColor: context.colors.foreground1,
+                  content: Column(
+                    children: [
+                      NomoText(
+                        "Your theme has been set successfully! 🎉",
+                        style: context.theme.typography.b3.copyWith(
+                          color: context.theme.colors.primary,
+                        ),
+                      ),
+                      NomoText(
+                        "The App will shut down to apply the new theme!",
+                        style: context.theme.typography.b3.copyWith(
+                          color: context.theme.colors.primary,
+                        ),
+                      ),
+                    ],
+                  ),
+                  duration: const Duration(seconds: 4),
+                ),
+              );
             },
           ),
           IconButton(
