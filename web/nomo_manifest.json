@@ -3,10 +3,9 @@
     "webon_id": "app.nomo.swapdefi",
     "webon_name": "Swap DeFi",
     "webon_version": "0.1.0",
-    "min_nomo_version": "0.3.5",
+    "min_nomo_version": "0.3.8",
     "dependencies": [],
     "permissions": [
-        "nomo.permission.SEND_MESSAGE",
         "nomo.permission.READ_MEDIA",
         "nomo.permission.GET_INSTALLED_WEBONS",
         "nomo.permission.INSTALL_WEBON"
