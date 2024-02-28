@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
+import 'package:nomo_ui_kit/theme/nomo_theme.dart';
 import 'package:nomo_ui_kit/theme/sub/nomo_color_theme.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:swap_theme_webon/provider/saved_themes_provider.dart';
@@ -12,27 +13,56 @@ part 'colors_provider.g.dart';
 class ColorPalatteNotifier extends _$ColorPalatteNotifier {
   @override
   NomoColors build() {
-    return ColorMode.LIGHT.theme.colors;
+    return ColorMode.LIGHT.theme.colors.copyWith(
+      secondaryContainer:
+          ColorMode.LIGHT.theme.colors.secondaryContainer.lighten(0.1),
+    );
   }
 
   void updateColor(Color color, String name) {
-    state = state.copyWith(
-      primary: name == "Primary" ? color : state.primary,
-      onPrimary: name == "On Primary" ? color : state.onPrimary,
-      primaryContainer:
-          name == "Primary Container" ? color : state.primaryContainer,
-      secondary: name == "Secondary" ? color : state.secondary,
-      onSecondary: name == "On Secondary" ? color : state.onSecondary,
-      secondaryContainer:
-          name == "Secondary Container" ? color : state.secondaryContainer,
-      background1: name == "Background" ? color : state.background1,
-      background2: name == "Background 2" ? color : state.background2,
-      background3: name == "Background 3" ? color : state.background3,
-      disabled: name == "Disabled" ? color : state.disabled,
-      error: name == "Error" ? color : state.error,
-      foreground1: name == "Foreground" ? color : state.foreground1,
-      surface: name == "Surface" ? color : state.surface,
-    );
+    switch (name) {
+      case "Primary":
+        state = state.copyWith(primary: color);
+        state = state.copyWith(
+          primaryContainer: color.lighten(0.1),
+        );
+      case "On Primary":
+        state = state.copyWith(onPrimary: color);
+      case "Primary Container":
+        state = state.copyWith(primaryContainer: color);
+      case "Secondary":
+        state = state.copyWith(secondary: color);
+      case "On Secondary":
+        state = state.copyWith(onSecondary: color);
+      case "Secondary Container":
+        state = state.copyWith(secondaryContainer: color);
+      case "Background":
+        state = state.copyWith(
+          background1: color,
+          background2: color.darken(0.2),
+          background3: color.darken(0.3),
+          secondaryContainer: color.lighten(0.2),
+        );
+        Logger().i("Updated Background colors!");
+
+      case "Disabled":
+        state = state.copyWith(disabled: color);
+      case "Error":
+        state = state.copyWith(error: color);
+      case "Foreground":
+        state = state.copyWith(
+          foreground1: color,
+          foreground2: color.darken(0.2),
+          foreground3: color.darken(0.3),
+        );
+
+        Logger().i("Updated Foreground colors!");
+
+      case "Surface":
+        state = state.copyWith(surface: color);
+        break;
+      default:
+    }
   }
 
   void updateBrigthness(Brightness brightness) {

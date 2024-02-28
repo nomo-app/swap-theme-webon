@@ -49,15 +49,16 @@ class ColorSection extends ConsumerWidget {
         ColorsWidget(
           color: colors.background1,
           name: "Background",
-          description: "The background color of the app",
+          description:
+              "The background color of launcher icons and other elements",
           onTap: () => _onTap(ColorFields.background1, context),
         ),
-        ColorsWidget(
-          color: colors.surface,
-          name: "Surface",
-          description: "The surface color of the app (cards, etc)",
-          onTap: () => _onTap(ColorFields.surface, context),
-        ),
+        // ColorsWidget(
+        //   color: colors.surface,
+        //   name: "Surface",
+        //   description: "The surface color of the app (cards, etc)",
+        //   onTap: () => _onTap(ColorFields.surface, context),
+        // ),
       ],
     );
   }

@@ -23,7 +23,7 @@ class ExampleTheme extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return NomoCard(
-      backgroundColor: theme.surface,
+      backgroundColor: theme.background1,
       elevation: 2,
       borderRadius: BorderRadius.circular(8),
       padding: isEditAble!
@@ -99,6 +99,18 @@ class ExampleTheme extends ConsumerWidget {
                 text: "Button",
                 textStyle: context.theme.typography.b3.copyWith(
                   color: theme.foreground1,
+                ),
+              ),
+              NomoCard(
+                backgroundColor: theme.secondaryContainer,
+                borderRadius: BorderRadius.circular(8),
+                child: SizedBox(
+                  width: 55,
+                  height: 55,
+                  child: Image.asset(
+                    "home.png",
+                    color: theme.primary,
+                  ),
                 ),
               ),
             ],

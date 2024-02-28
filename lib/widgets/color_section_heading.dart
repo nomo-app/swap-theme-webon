@@ -31,6 +31,16 @@ class ColorSectionHeading extends ConsumerWidget {
           if (themeProvider.colorTheme == ColorMode.DARK.theme)
             IconButton(
               onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    backgroundColor: context.theme.colors.background1,
+                    content: NomoText(
+                      "Currently creating a light theme!",
+                      style: context.theme.typography.b3,
+                    ),
+                    duration: const Duration(seconds: 1),
+                  ),
+                );
                 ThemeProvider.of(context).changeColorTheme(
                   ColorMode.LIGHT.theme,
                 );
@@ -50,6 +60,16 @@ class ColorSectionHeading extends ConsumerWidget {
           else
             IconButton(
               onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    backgroundColor: context.theme.colors.background1,
+                    content: NomoText(
+                      "Currently creating a dark theme!",
+                      style: context.theme.typography.b3,
+                    ),
+                    duration: const Duration(seconds: 1),
+                  ),
+                );
                 ThemeProvider.of(context).changeColorTheme(
                   ColorMode.DARK.theme,
                 );

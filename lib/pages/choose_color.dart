@@ -41,7 +41,7 @@ class ChooseColor extends ConsumerWidget {
           Row(
             children: [
               IconButton(
-                color: colors.foreground1,
+                color: context.theme.colors.foreground1,
                 onPressed: () => NomoNavigator.of(context).pop(),
                 icon: const Icon(NomoIcons.arrowLeft),
               ),
@@ -49,7 +49,7 @@ class ChooseColor extends ConsumerWidget {
               NomoText(
                 colorField.name,
                 style: context.theme.typography.h2,
-                color: colors.foreground1,
+                color: context.theme.colors.foreground1,
               ),
               const Spacer(),
               const SizedBox(width: 48),
@@ -58,7 +58,7 @@ class ChooseColor extends ConsumerWidget {
           SizedBox(
             width: 400,
             child: Material(
-              color: colors.background1,
+              color: context.theme.colors.background1,
               child: ColorPicker(
                 color: startColor,
                 enableOpacity: true,
