@@ -23,12 +23,15 @@ class ExampleTheme extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return NomoCard(
-      backgroundColor: theme.background1,
-      elevation: 2,
+      backgroundColor: context.theme.colors.background1,
+      elevation: context.theme.colors.brightness == Brightness.light ? 4 : 0,
+      border: context.theme.colors.brightness == Brightness.dark
+          ? Border.all(color: context.theme.colors.foreground3, width: 1)
+          : null,
       borderRadius: BorderRadius.circular(8),
       padding: isEditAble!
           ? const EdgeInsets.only(bottom: 16)
-          : const EdgeInsets.all(32),
+          : const EdgeInsets.symmetric(vertical: 12),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.end,
@@ -102,13 +105,13 @@ class ExampleTheme extends ConsumerWidget {
                 ),
               ),
               NomoCard(
-                backgroundColor: theme.secondaryContainer,
-                borderRadius: BorderRadius.circular(8),
+                backgroundColor: theme.secondaryContainer.lighten(),
+                borderRadius: BorderRadius.circular(16),
                 child: SizedBox(
                   width: 55,
                   height: 55,
                   child: Image.asset(
-                    "home.png",
+                    "assets/images/home.png",
                     color: theme.primary,
                   ),
                 ),

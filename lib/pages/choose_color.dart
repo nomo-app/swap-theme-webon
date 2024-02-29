@@ -10,6 +10,7 @@ import 'package:nomo_ui_kit/theme/nomo_theme.dart';
 import 'package:swap_theme_webon/provider/colors_provider.dart';
 import 'package:swap_theme_webon/widgets/color_section.dart';
 import 'package:swap_theme_webon/widgets/example_theme.dart';
+import 'package:swap_theme_webon/widgets/expanded_preview.dart';
 
 class ChooseColor extends ConsumerWidget {
   final bool? isEditTheme;
@@ -61,7 +62,7 @@ class ChooseColor extends ConsumerWidget {
               color: context.theme.colors.background1,
               child: ColorPicker(
                 color: startColor,
-                enableOpacity: true,
+                enableOpacity: false,
                 enableShadesSelection: true,
                 pickersEnabled: const <ColorPickerType, bool>{
                   ColorPickerType.both: false,
@@ -93,6 +94,8 @@ class ChooseColor extends ConsumerWidget {
           ExampleTheme(
             theme: colors,
           ),
+          const SizedBox(height: 16),
+          const ExpandedPreview(),
         ];
       },
     );

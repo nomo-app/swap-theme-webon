@@ -40,7 +40,7 @@ class ColorPalatteNotifier extends _$ColorPalatteNotifier {
           background1: color,
           background2: color.darken(0.2),
           background3: color.darken(0.3),
-          secondaryContainer: color.lighten(0.2),
+          secondaryContainer: color.lighten(0.1),
         );
         Logger().i("Updated Background colors!");
 
