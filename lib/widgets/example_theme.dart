@@ -23,7 +23,9 @@ class ExampleTheme extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return NomoCard(
-      backgroundColor: theme.background1,
+      backgroundColor: theme.brightness == Brightness.dark
+          ? const Color(0xff293138)
+          : const Color(0xFFF5F5F5),
       elevation: theme.brightness == Brightness.light ? 4 : 0,
       border: theme.brightness == Brightness.dark
           ? Border.all(color: context.theme.colors.foreground3, width: 1)
@@ -90,19 +92,17 @@ class ExampleTheme extends ConsumerWidget {
                 backgroundColor: theme.primary,
                 child: NomoText(
                   "Button",
-                  style: context.theme.typography.b3.copyWith(
-                    color: theme.onPrimary,
-                  ),
+                  style: context.theme.typography.b3,
+                  color: theme.onPrimary,
                 ),
               ),
               SecondaryNomoButton(
+                foregroundColor: theme.foreground1,
                 onPressed: () {},
                 width: 100,
                 padding: const EdgeInsets.all(12),
                 text: "Button",
-                textStyle: context.theme.typography.b3.copyWith(
-                  color: theme.foreground1,
-                ),
+                textStyle: context.typography.b3,
               ),
               NomoCard(
                 backgroundColor: theme.secondaryContainer.lighten(),
