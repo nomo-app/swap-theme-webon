@@ -51,21 +51,12 @@ class SavedThemeItem extends ConsumerWidget {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   backgroundColor: context.colors.foreground1,
-                  content: Column(
-                    children: [
-                      NomoText(
-                        "Your theme has been set successfully! 🎉",
-                        style: context.theme.typography.b3.copyWith(
-                          color: context.theme.colors.primary,
-                        ),
-                      ),
-                      NomoText(
-                        "The App will shut down to apply the new theme!",
-                        style: context.theme.typography.b3.copyWith(
-                          color: context.theme.colors.primary,
-                        ),
-                      ),
-                    ],
+                  content: NomoText(
+                    textAlign: TextAlign.center,
+                    "Your theme has been set successfully! 🎉",
+                    style: context.theme.typography.b3.copyWith(
+                      color: context.theme.colors.primary,
+                    ),
                   ),
                   duration: const Duration(seconds: 4),
                 ),
