@@ -23,9 +23,9 @@ class ExampleTheme extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return NomoCard(
-      backgroundColor: context.theme.colors.background1,
-      elevation: context.theme.colors.brightness == Brightness.light ? 4 : 0,
-      border: context.theme.colors.brightness == Brightness.dark
+      backgroundColor: theme.background1,
+      elevation: theme.brightness == Brightness.light ? 4 : 0,
+      border: theme.brightness == Brightness.dark
           ? Border.all(color: context.theme.colors.foreground3, width: 1)
           : null,
       borderRadius: BorderRadius.circular(8),
