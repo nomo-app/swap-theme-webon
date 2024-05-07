@@ -6,6 +6,3 @@ linter:
 analyzer:
   plugins:
     - custom_lint
-  exclude:
-    - packages/
-    - lib/routes.g.dart

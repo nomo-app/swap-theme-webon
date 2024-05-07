@@ -7,22 +7,31 @@ part of 'routes.dart';
 // **************************************************************************
 
 class AppRouter extends NomoAppRouter {
-  AppRouter()
+  final Future<bool> Function()? shouldPop;
+  final Future<bool> Function()? willPop;
+  late final RouterConfig<Object> config;
+  late final NomoRouterDelegate delegate;
+  AppRouter({this.shouldPop, this.willPop})
       : super(
           {
             HomeScreenRoute.path: ([a]) => HomeScreenRoute(),
-            ChooseColorRoute.path: ([a]) {
-              final typedArgs = a as ChooseColorArguments?;
-              return ChooseColorRoute(
-                isEditTheme: typedArgs?.isEditTheme ?? false,
-              );
-            },
-            SavedThemesRoute.path: ([a]) => SavedThemesRoute(),
-            EditThemeRoute.path: ([a]) => EditThemeRoute(),
           },
-          _routes.expanded.where((r) => r is! NestedPageRouteInfo).toList(),
-          _routes.expanded.whereType<NestedPageRouteInfo>().toList(),
-        );
+          _routes.expanded.where((r) => r is! NestedNavigator).toList(),
+          _routes.expanded.whereType<NestedNavigator>().toList(),
+        ) {
+    delegate = NomoRouterDelegate(appRouter: this);
+    config = RouterConfig(
+        routerDelegate: delegate,
+        backButtonDispatcher:
+            NomoBackButtonDispatcher(delegate, shouldPop, willPop),
+        routeInformationParser: const NomoRouteInformationParser(),
+        routeInformationProvider: PlatformRouteInformationProvider(
+          initialRouteInformation: RouteInformation(
+            uri:
+                WidgetsBinding.instance.platformDispatcher.defaultRouteName.uri,
+          ),
+        ));
+  }
 }
 
 class HomeScreenArguments {
@@ -36,51 +45,4 @@ class HomeScreenRoute extends AppRoute implements HomeScreenArguments {
           page: HomeScreen(),
         );
   static String path = '/';
-}
-
-class ChooseColorArguments {
-  final bool? isEditTheme;
-  const ChooseColorArguments({
-    required this.isEditTheme,
-  });
-}
-
-class ChooseColorRoute extends AppRoute implements ChooseColorArguments {
-  @override
-  final bool? isEditTheme;
-  ChooseColorRoute({
-    this.isEditTheme = false,
-  }) : super(
-          name: '/chooseColor',
-          page: ChooseColor(
-            isEditTheme: isEditTheme,
-          ),
-        );
-  static String path = '/chooseColor';
-}
-
-class SavedThemesArguments {
-  const SavedThemesArguments();
-}
-
-class SavedThemesRoute extends AppRoute implements SavedThemesArguments {
-  SavedThemesRoute()
-      : super(
-          name: '/savedThemes',
-          page: SavedThemes(),
-        );
-  static String path = '/savedThemes';
-}
-
-class EditThemeArguments {
-  const EditThemeArguments();
-}
-
-class EditThemeRoute extends AppRoute implements EditThemeArguments {
-  EditThemeRoute()
-      : super(
-          name: '/editTheme',
-          page: EditTheme(),
-        );
-  static String path = '/editTheme';
 }

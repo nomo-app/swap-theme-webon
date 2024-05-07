@@ -8,11 +8,10 @@
             "name": "swap_theme_webon",
             "request": "launch",
             "type": "dart",
+            "flutterMode": "debug",
             "args": [
-                "-d",
-                "chrome",
                 "--web-port",
-                "3000"
+                "3000",
             ]
         },
         {
