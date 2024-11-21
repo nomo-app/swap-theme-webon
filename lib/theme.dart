@@ -1,227 +1,249 @@
-// ignore_for_file: constant_identifier_names
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:nomo_ui_kit/components/app/app.dart';
+import 'package:nomo_ui_kit/components/app/scaffold/nomo_scaffold.dart';
+import 'package:nomo_ui_kit/components/divider/nomo_divider.dart';
+import 'package:nomo_ui_kit/components/expandable/expandable.dart';
+import 'package:nomo_ui_kit/components/info_item/nomo_info_item.dart';
 import 'package:nomo_ui_kit/components/input/textInput/nomo_input.dart';
+import 'package:nomo_ui_kit/components/loading/shimmer/shimmer.dart';
 import 'package:nomo_ui_kit/components/outline_container/nomo_outline_container.dart';
+import 'package:nomo_ui_kit/components/snackbar/nomo_snackbar.dart';
 import 'package:nomo_ui_kit/theme/nomo_theme.dart';
 import 'package:nomo_ui_kit/theme/sub/nomo_color_theme.dart';
 import 'package:nomo_ui_kit/theme/sub/nomo_constants.dart';
 import 'package:nomo_ui_kit/theme/sub/nomo_sizing_theme.dart';
 
-final typography = NomoTypographyTheme(
-  b1: GoogleFonts.roboto(),
-  b2: GoogleFonts.roboto(),
-  b3: GoogleFonts.roboto(),
-  h1: GoogleFonts.nunito(),
-  h2: GoogleFonts.nunito(),
-  h3: GoogleFonts.nunito(),
-);
+enum ColorMode { LIGHT, DARK, AVINOC, BLACK }
 
-const constants = NomoComponentConstants(
-  inputTheme: NomoInputConstants(
-    duration: Duration(milliseconds: 200),
-  ),
-);
-
-enum ColorMode {
-  LIGHT('Nomo Light', "assets/images/light/registrationbackground.png"),
-  DARK('Nomo Dark', "assets/images/dark/registrationbackground.png");
-
-  final String displayName;
-  final String imagePath;
-
-  const ColorMode(this.displayName, this.imagePath);
-
-  NomoColorThemeData get theme => switch (this) {
-        ColorMode.LIGHT => light,
-        ColorMode.DARK => dark,
-      };
+enum SizingMode {
+  SMALL,
 }
 
-extension ColorTypeExt on NomoColorThemeData {
-  ColorMode get type {
-    return ColorMode.values.firstWhere(
-      (element) => element.theme == this,
-      orElse: () => ColorMode.LIGHT,
+class AppThemeDelegate extends NomoThemeDelegate<ColorMode, SizingMode> {
+  @override
+  NomoConstantsThemeData get constants {
+    return NomoConstantsThemeData(
+      constants: NomoConstants(),
+      componentConstantsBuilder: (core) {
+        return const NomoComponentConstants();
+      },
     );
   }
 
-  bool get isLight => type == ColorMode.LIGHT;
-  bool get isDark => type == ColorMode.DARK;
-
-  Color get borderColor => Colors.white24;
-}
-
-final light = NomoColorThemeData(
-  key: const ValueKey('light'),
-  colors: const NomoColors(
-    primary: primaryColor,
-    onPrimary: Colors.white,
-    primaryContainer: Color(0xffFCFAF7),
-    secondary: secondary,
-    onSecondary: Color(0xff000000),
-    secondaryContainer: Color(0xffe6d0a3),
-    background1: Color(0xFFF5F5F5),
-    background2: Color(0xFFE0E0E0),
-    background3: Color(0xFFBDBDBD),
-    surface: Colors.white,
-    error: Colors.redAccent,
-    disabled: Color(0xFFE0E0E0),
-    foreground1: Color(0xCF000000),
-    foreground2: Color(0xDF000000),
-    foreground3: Color(0xEF000000),
-    brightness: Brightness.light,
-    onDisabled: Colors.grey,
-  ),
-  buildComponents: (core) {
-    return overrideNomoComponentColors(
-      core: core,
-      outlineContainerTheme: NomoOutlineContainerColorData(
-        background: core.background1.darken(0.05),
-      ),
+  @override
+  NomoComponentSizesNullable defaultComponentsSize(NomoSizes core) {
+    return const NomoComponentSizesNullable(
+      inputSizing: NomoInputSizingDataNullable(),
     );
-  },
-);
+  }
 
-final dark = NomoColorThemeData(
-  key: const ValueKey('dark'),
-  colors: const NomoColors(
-    primary: primaryColor,
-    onPrimary: Colors.white,
-    primaryContainer: Color(0xffFCFAF7),
-    secondary: secondary,
-    onSecondary: Color(0xff000000),
-    secondaryContainer: Color(0xffe6d0a3),
-    background1: Color(0xff293138),
-    background2: Color(0xff1e2428),
-    background3: Color(0xff13191d),
-    surface: Color(0xff2e363c),
-    error: Colors.redAccent,
-    disabled: Color(0xFFE0E0E0),
-    foreground1: Color(0xEAFFFFFF),
-    foreground2: Color(0xF0FFFFFF),
-    foreground3: Color(0xFAFFFFFF),
-    brightness: Brightness.dark,
-    onDisabled: Colors.grey,
-  ),
-  buildComponents: (core) {
-    return overrideNomoComponentColors(
-      core: core,
-      outlineContainerTheme: NomoOutlineContainerColorData(
-        background: core.background1.lighten(0.05),
-        border: const Border.fromBorderSide(
-          BorderSide(
-            color: Colors.white24,
-          ),
+  @override
+  ColorMode initialColorTheme() {
+    return ColorMode.DARK;
+  }
+
+  @override
+  SizingMode sizingThemeBuilder(double width) {
+    return SizingMode.SMALL;
+  }
+
+  @override
+  NomoTypographyTheme get typography => NomoTypographyTheme(
+        b1: GoogleFonts.roboto(),
+        b2: GoogleFonts.roboto(),
+        b3: GoogleFonts.roboto(),
+        h1: GoogleFonts.dancingScript(),
+        h2: GoogleFonts.dancingScript(),
+        h3: GoogleFonts.dancingScript(),
+      );
+
+  @override
+  Map<SizingMode, NomoSizingThemeDataNullable> getSizingThemes() {
+    return {
+      SizingMode.SMALL: NomoSizingThemeDataNullable(
+        key: const ValueKey('small'),
+        sizes: const NomoSizes(
+          fontSizeB1: 14,
+          fontSizeB2: 18,
+          fontSizeB3: 28,
+          fontSizeH1: 36,
+          fontSizeH2: 48,
+          fontSizeH3: 64,
+          spacing1: 4,
+          spacing2: 6,
+          spacing3: 8,
+        ),
+        buildComponents: (core) {
+          return const NomoComponentSizesNullable(
+            scaffoldSizing: NomoScaffoldSizingDataNullable(
+              showSider: false,
+            ),
+          );
+        },
+      ),
+    };
+  }
+
+  @override
+  Map<ColorMode, NomoColorThemeDataNullable> getColorThemes() {
+    return {
+      ColorMode.LIGHT: NomoColorThemeDataNullable(
+        key: const ValueKey("light"),
+        colors: const NomoColors(
+          primary: primaryColor,
+          onPrimary: Colors.white,
+          primaryContainer: Color(0xffFCFAF7),
+          secondary: secondary,
+          onSecondary: Color(0xff000000),
+          secondaryContainer: Color(0xFFe9e1d1),
+          background1: Color(0xFFfafafa),
+          background2: Color(0xFFf5f5f5),
+          background3: Color(0xFFf0f0f0),
+          surface: Colors.white,
+          error: Colors.redAccent,
+          disabled: Color(0xFFE0E0E0),
+          foreground1: Color(0xCF000000),
+          foreground2: Color(0xDF000000),
+          foreground3: Color(0xEF000000),
+          brightness: Brightness.light,
+          onDisabled: Colors.grey,
+        ),
+        buildComponents: (core) {
+          return NomoComponentColorsNullable(
+            outlineContainerColor: NomoOutlineContainerColorData(
+              background: core.background1.darken(0.05),
+            ),
+            shimmerColor: const ShimmerColorDataNullable(
+              gradient: LinearGradient(
+                colors: [
+                  Color(0xFFEBEBF4),
+                  Color(0xFFF4F4F4),
+                  Color(0xFFEBEBF4)
+                ],
+              ),
+            ),
+            snackBarColor: const NomoSnackBarColorDataNullable(
+              elevation: 1,
+              border: BorderSide.none,
+            ),
+          );
+        },
+      ),
+      ColorMode.DARK: NomoColorThemeDataNullable(
+        key: const ValueKey("dark"),
+        colors: const NomoColors(
+          primary: primaryColor,
+          onPrimary: Colors.white,
+          primaryContainer: Color(0xFF4b422d),
+          secondary: secondary,
+          onSecondary: Color(0xff000000),
+          secondaryContainer: Color(0xFFe9e1d1),
+          background1: Color(0xff293138),
+          background2: Color(0xff1e2428),
+          background3: Color(0xff13191d),
+          surface: Color(0xff2e363c),
+          error: Colors.redAccent,
+          disabled: Color(0xFFE0E0E0),
+          foreground1: Color(0xEAFFFFFF),
+          foreground2: Color(0xF0FFFFFF),
+          foreground3: Color(0xFAFFFFFF),
+          brightness: Brightness.dark,
+          onDisabled: Colors.grey,
+        ),
+        buildComponents: (core) {
+          return const NomoComponentColorsNullable(
+            expandableColor: ExpandableColorData(
+              splashColor: Colors.white24,
+              highlightColor: Colors.white24,
+            ),
+          );
+        },
+      ),
+      ColorMode.AVINOC: NomoColorThemeDataNullable(
+        key: const ValueKey("avinoc"),
+        colors: const NomoColors(
+          primary: Color(0xff2FAAA5),
+          onPrimary: Colors.white,
+          primaryContainer: Color.fromARGB(255, 202, 255, 253),
+          secondary: Color(0xff2FAAA5),
+          onSecondary: Color(0xff1C1C1C),
+          secondaryContainer: Color(0xFFc3eeed),
+          background1: Color(0xff272F4A),
+          background2: Color(0xFF333A66),
+          background3: Color(0xFF232846),
+          surface: Color(0xFF101d42),
+          error: Colors.redAccent,
+          disabled: Color(0xFFE0E0E0),
+          foreground1: Color(0xEAFFFFFF),
+          foreground2: Color(0xF0FFFFFF),
+          foreground3: Color(0xFAFFFFFF),
+          brightness: Brightness.dark,
+          onDisabled: Colors.grey,
+        ),
+        buildComponents: (core) {
+          return const NomoComponentColorsNullable(
+            expandableColor: ExpandableColorData(
+              splashColor: Colors.white24,
+              highlightColor: Colors.white24,
+            ),
+          );
+        },
+      ),
+      ColorMode.BLACK: NomoColorThemeDataNullable(
+        key: const ValueKey("black"),
+        colors: const NomoColors(
+          primary: primaryColor,
+          onPrimary: Colors.white,
+          primaryContainer: Color(0xFF4b422d),
+          secondary: secondary,
+          onSecondary: Color(0xff000000),
+          secondaryContainer: Color(0xFFe9e1d1),
+          background1: Color(0xFF1f1f1f),
+          background2: Color(0xFF262626),
+          background3: Color(0xFF434343),
+          surface: Color(0xFF141414),
+          error: Colors.redAccent,
+          disabled: Color(0xFFE0E0E0),
+          foreground1: Color(0xEAFFFFFF),
+          foreground2: Color(0xF0FFFFFF),
+          foreground3: Color(0xFAFFFFFF),
+          brightness: Brightness.dark,
+          onDisabled: Colors.grey,
+        ),
+        buildComponents: (core) {
+          return const NomoComponentColorsNullable(
+            expandableColor: ExpandableColorData(
+              splashColor: Colors.white24,
+              highlightColor: Colors.white24,
+            ),
+          );
+        },
+      ),
+    };
+  }
+
+  @override
+  NomoComponentColorsNullable defaultComponentsColor(NomoColors core) {
+    return NomoComponentColorsNullable(
+      inputColor: NomoInputColorDataNullable(
+        borderRadius: BorderRadius.circular(12),
+      ),
+      infoItemColor: const NomoInfoItemColorDataNullable(),
+      dividerColor: NomoDividerColorDataNullable(
+        color: core.background1,
+      ),
+      shimmerColor: const ShimmerColorDataNullable(
+        gradient: LinearGradient(
+          colors: [
+            Color(0x222FAAA5),
+            Color.fromARGB(126, 104, 115, 154),
+            Color(0x222FAAA5)
+          ],
+          stops: [0.1, 0.3, 0.4],
+          begin: Alignment(-1.0, -0.3),
+          end: Alignment(1.0, 0.3),
         ),
       ),
     );
-  },
-);
-
-final sizingSmall = NomoSizingThemeData(
-  key: const ValueKey('small'),
-  sizes: const NomoSizes(
-    fontSizeB1: 10,
-    fontSizeB2: 12,
-    fontSizeB3: 14,
-    fontSizeH1: 16,
-    fontSizeH2: 18,
-    fontSizeH3: 20,
-    spacing1: 4,
-    spacing2: 6,
-    spacing3: 8,
-  ),
-  buildComponents: (core) => overrideNomoComponentSizes(
-    core: core,
-    outlineContainerTheme: const NomoOutlineContainerSizingData(
-      padding: EdgeInsets.all(4),
-      spacing: 4,
-    ),
-    appBarTheme: const NomoAppBarSizingData(),
-    scaffoldTheme: const NomoScaffoldSizingData(
-      showBottomBar: true,
-      showSider: false,
-    ),
-    routeBodyTheme: const NomoRouteBodySizingData(
-      padding: EdgeInsets.all(16),
-    ),
-  ),
-);
-
-final sizingMedium = NomoSizingThemeData(
-  key: const ValueKey('medium'),
-  sizes: const NomoSizes(
-    fontSizeB1: 12,
-    fontSizeB2: 14,
-    fontSizeB3: 16,
-    fontSizeH1: 18,
-    fontSizeH2: 20,
-    fontSizeH3: 22,
-    spacing1: 4,
-    spacing2: 6,
-    spacing3: 8,
-  ),
-  buildComponents: (core) {
-    return overrideNomoComponentSizes(
-      core: core,
-      outlineContainerTheme: const NomoOutlineContainerSizingData(
-        padding: EdgeInsets.all(8),
-        spacing: 8,
-      ),
-      appBarTheme: const NomoAppBarSizingData(),
-      scaffoldTheme: const NomoScaffoldSizingData(
-        showSider: false,
-      ),
-      routeBodyTheme: const NomoRouteBodySizingData(
-        padding: EdgeInsets.all(24),
-      ),
-    );
-  },
-);
-
-final sizingLarge = NomoSizingThemeData(
-  key: const ValueKey('large'),
-  sizes: const NomoSizes(
-    maxContentWidth: 1000,
-    fontSizeB1: 14,
-    fontSizeB2: 16,
-    fontSizeB3: 18,
-    fontSizeH1: 20,
-    fontSizeH2: 22,
-    fontSizeH3: 24,
-    spacing1: 8,
-    spacing2: 10,
-    spacing3: 12,
-  ),
-  buildComponents: (core) {
-    return overrideNomoComponentSizes(
-      core: core,
-      siderTheme: const NomoSiderThemeData(
-        padding: EdgeInsets.all(4),
-        width: 200,
-      ),
-      routeBodyTheme: const NomoRouteBodySizingData(
-        padding: EdgeInsets.all(32),
-      ),
-    );
-  },
-);
-
-enum SizingMode {
-  SMALL(600),
-  MEDIUM(1080),
-  LARGE(1440);
-
-  final double width;
-
-  NomoSizingThemeData get theme => switch (this) {
-        SizingMode.SMALL => sizingSmall,
-        SizingMode.MEDIUM => sizingMedium,
-        SizingMode.LARGE => sizingLarge,
-      };
-
-  const SizingMode(this.width);
+  }
 }

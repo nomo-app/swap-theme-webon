@@ -1,90 +1,90 @@
-import 'dart:convert';
-import 'package:nomo_ui_kit/theme/sub/nomo_color_theme.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:swap_theme_webon/provider/colors_provider.dart';
-import 'package:webon_kit_dart/webon_kit_dart.dart';
+// import 'dart:convert';
+// import 'package:nomo_ui_kit/theme/sub/nomo_color_theme.dart';
+// import 'package:riverpod_annotation/riverpod_annotation.dart';
+// import 'package:swap_theme_webon/provider/colors_provider.dart';
+// import 'package:webon_kit_dart/webon_kit_dart.dart';
 
-part 'saved_themes_provider.g.dart';
+// part 'saved_themes_provider.g.dart';
 
-@riverpod
-class SavedThemeNotifier extends _$SavedThemeNotifier {
-  @override
-  Future<List<NomoColors>> build() async {
-    final themes = await _readThemesFromLocalStorage('nomoTheme');
+// @riverpod
+// class SavedThemeNotifier extends _$SavedThemeNotifier {
+//   @override
+//   Future<List<NomoColors>> build() async {
+//     final themes = await _readThemesFromLocalStorage('nomoTheme');
 
-    return themes;
-  }
+//     return themes;
+//   }
 
-  Future<List<NomoColors>> _readThemesFromLocalStorage(String prefix) async {
-    final result = await WebonKitDart.getLocalStorage(key: prefix);
+//   Future<List<NomoColors>> _readThemesFromLocalStorage(String prefix) async {
+//     final result = await WebonKitDart.getLocalStorage(key: prefix);
 
-    if (result == null) {
-      return [];
-    }
+//     if (result == null) {
+//       return [];
+//     }
 
-    final decodedJson = jsonDecode(result);
+//     final decodedJson = jsonDecode(result);
 
-    List<Map<String, dynamic>> themesData =
-        List<Map<String, dynamic>>.from(decodedJson);
+//     List<Map<String, dynamic>> themesData =
+//         List<Map<String, dynamic>>.from(decodedJson);
 
-    final themes = themesData.map((e) => NomoColors.fromJson(e)).toList();
+//     final themes = themesData.map((e) => NomoColors.fromJson(e)).toList();
 
-    return themes;
-  }
+//     return themes;
+//   }
 
-  void addTheme(NomoColors theme) async {
-    var themes = AsyncData(
-      await _readThemesFromLocalStorage('nomoTheme'),
-    );
+//   void addTheme(NomoColors theme) async {
+//     var themes = AsyncData(
+//       await _readThemesFromLocalStorage('nomoTheme'),
+//     );
 
-    themes.value.add(theme);
+//     themes.value.add(theme);
 
-    final themesJson = jsonEncode(themes.value).toString();
+//     final themesJson = jsonEncode(themes.value).toString();
 
-    await WebonKitDart.setLocalStorage(
-      key: 'nomoTheme',
-      value: themesJson,
-    );
+//     await WebonKitDart.setLocalStorage(
+//       key: 'nomoTheme',
+//       value: themesJson,
+//     );
 
-    state = AsyncData(themes.value);
-  }
+//     state = AsyncData(themes.value);
+//   }
 
-  void removeTheme(int index) async {
-    var themes = AsyncData(
-      await _readThemesFromLocalStorage('nomoTheme'),
-    );
+//   void removeTheme(int index) async {
+//     var themes = AsyncData(
+//       await _readThemesFromLocalStorage('nomoTheme'),
+//     );
 
-    themes.value.removeAt(index);
+//     themes.value.removeAt(index);
 
-    final themesJson = jsonEncode(themes.value).toString();
+//     final themesJson = jsonEncode(themes.value).toString();
 
-    await WebonKitDart.setLocalStorage(
-      key: 'nomoTheme',
-      value: themesJson,
-    );
+//     await WebonKitDart.setLocalStorage(
+//       key: 'nomoTheme',
+//       value: themesJson,
+//     );
 
-    state = AsyncValue.data(themes.value);
-  }
+//     state = AsyncValue.data(themes.value);
+//   }
 
-  void editSavedTheme(int index) async {
-    state = AsyncValue.data(state.value ?? []);
+//   void editSavedTheme(int index) async {
+//     state = AsyncValue.data(state.value ?? []);
 
-    NomoColors themeToEdit = state.value![index];
+//     NomoColors themeToEdit = state.value![index];
 
-    themeToEdit =
-        ref.read(colorPalatteNotifierProvider.notifier).getCurrentColors();
+//     themeToEdit =
+//         ref.read(colorPalatteNotifierProvider.notifier).getCurrentColors();
 
-    state.value![index] = themeToEdit;
+//     state.value![index] = themeToEdit;
 
-    final themesJson = jsonEncode(state.value).toString();
+//     final themesJson = jsonEncode(state.value).toString();
 
-    await WebonKitDart.setLocalStorage(
-      key: 'nomoTheme',
-      value: themesJson,
-    );
+//     await WebonKitDart.setLocalStorage(
+//       key: 'nomoTheme',
+//       value: themesJson,
+//     );
 
-    state = AsyncValue.data(state.value!);
+//     state = AsyncValue.data(state.value!);
 
-    ref.invalidate(colorPalatteNotifierProvider);
-  }
-}
+//     ref.invalidate(colorPalatteNotifierProvider);
+//   }
+// }
