@@ -12,8 +12,20 @@ import 'package:nomo_ui_kit/theme/nomo_theme.dart';
 import 'package:nomo_ui_kit/theme/sub/nomo_color_theme.dart';
 import 'package:nomo_ui_kit/theme/sub/nomo_constants.dart';
 import 'package:nomo_ui_kit/theme/sub/nomo_sizing_theme.dart';
+import 'package:swap_theme_webon/predefined_themes.dart';
 
-enum ColorMode { LIGHT, DARK, AVINOC, BLACK }
+enum ColorMode {
+  LIGHT,
+  DARK,
+  AVINOC,
+  BLACK,
+  MODERNBLUE,
+  NATUREGREEN,
+  WARMDESERT,
+  DARKOCEAN,
+  CYBERPUNKNIGHT,
+  VOLCANICDARK
+}
 
 enum SizingMode {
   SMALL,
@@ -219,6 +231,12 @@ class AppThemeDelegate extends NomoThemeDelegate<ColorMode, SizingMode> {
           );
         },
       ),
+      ColorMode.MODERNBLUE: PredefinedThemes.modernBlue,
+      ColorMode.NATUREGREEN: PredefinedThemes.natureGreen,
+      ColorMode.WARMDESERT: PredefinedThemes.warmDesert,
+      ColorMode.DARKOCEAN: PredefinedThemes.darkOcean,
+      ColorMode.CYBERPUNKNIGHT: PredefinedThemes.cyberpunkNight,
+      ColorMode.VOLCANICDARK: PredefinedThemes.volcanicDark,
     };
   }
 
