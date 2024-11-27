@@ -11,8 +11,6 @@ import 'package:nomo_ui_kit/theme/nomo_theme.dart';
 import 'package:nomo_ui_kit/theme/sub/nomo_color_theme.dart';
 import 'package:nomo_ui_kit/theme/theme_provider.dart';
 import 'package:nomo_ui_kit/utils/layout_extensions.dart';
-import 'package:swap_theme_webon/theme.dart';
-import 'package:swap_theme_webon/utils.dart';
 import 'package:swap_theme_webon/widgets/color_picker_dialog.dart';
 import 'package:swap_theme_webon/widgets/color_widget.dart';
 
@@ -21,7 +19,6 @@ class CutomizeThemePage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = ThemeProvider.of(context);
-    final themeName = getThemeName(theme.colorMode as ColorMode);
     final themeState = useState<NomoColorThemeDataNullable>(theme.colorTheme);
 
     return NomoScaffold(
@@ -48,7 +45,7 @@ class CutomizeThemePage extends HookConsumerWidget {
       ),
       appBar: NomoAppBar(
         title: NomoText(
-          "Customize $themeName",
+          "Customize",
           style: context.theme.typography.h1,
           fit: true,
         ),
