@@ -30,6 +30,7 @@ class ThemeModeToggle extends StatelessWidget {
       child: ToggleButtons(
         constraints: const BoxConstraints(
           minWidth: 120,
+          maxWidth: 220,
           minHeight: 40,
         ),
         direction: Axis.horizontal,

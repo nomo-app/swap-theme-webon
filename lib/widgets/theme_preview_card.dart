@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nomo_ui_kit/components/buttons/primary/nomo_primary_button.dart';
 import 'package:nomo_ui_kit/components/buttons/secondary/nomo_secondary_button.dart';
-import 'package:nomo_ui_kit/components/divider/nomo_divider.dart';
 import 'package:nomo_ui_kit/components/text/nomo_text.dart';
 import 'package:nomo_ui_kit/theme/nomo_theme.dart';
 import 'package:nomo_ui_kit/theme/sub/nomo_color_theme.dart';
@@ -83,7 +82,7 @@ class ThemePreviewCard extends StatelessWidget {
             // Color preview section
             16.vSpacing,
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 12),
+              margin: const EdgeInsets.symmetric(horizontal: 12),
               height: 8,
               decoration: BoxDecoration(
                 color: theme.colors.foreground1,
@@ -93,8 +92,8 @@ class ThemePreviewCard extends StatelessWidget {
             8.vSpacing,
             Container(
               height: 8,
-              width: MediaQuery.of(context).size.width * 0.2,
-              margin: EdgeInsets.symmetric(horizontal: 12),
+              width: 120,
+              margin: const EdgeInsets.symmetric(horizontal: 12),
               decoration: BoxDecoration(
                 color: theme.colors.foreground1,
                 borderRadius: BorderRadius.circular(8),

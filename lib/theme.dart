@@ -23,8 +23,10 @@ enum ColorMode {
   NATUREGREEN,
   WARMDESERT,
   DARKOCEAN,
-  CYBERPUNKNIGHT,
-  VOLCANICDARK
+  CYBERPUNK,
+  VOLCANICDARK,
+  LAVENDERDREAMS,
+  SEABREEZE,
 }
 
 enum SizingMode {
@@ -235,8 +237,10 @@ class AppThemeDelegate extends NomoThemeDelegate<ColorMode, SizingMode> {
       ColorMode.NATUREGREEN: PredefinedThemes.natureGreen,
       ColorMode.WARMDESERT: PredefinedThemes.warmDesert,
       ColorMode.DARKOCEAN: PredefinedThemes.darkOcean,
-      ColorMode.CYBERPUNKNIGHT: PredefinedThemes.cyberpunkNight,
+      ColorMode.CYBERPUNK: PredefinedThemes.cyberpunk,
       ColorMode.VOLCANICDARK: PredefinedThemes.volcanicDark,
+      ColorMode.LAVENDERDREAMS: PredefinedThemes.lavenderDreams,
+      ColorMode.SEABREEZE: PredefinedThemes.seaBreeze,
     };
   }
 

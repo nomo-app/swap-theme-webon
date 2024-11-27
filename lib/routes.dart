@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:swap_theme_webon/pages/home.dart';
-import 'package:swap_theme_webon/pages/select_predefined.dart';
+import 'package:swap_theme_webon/pages/customize_theme_page.dart';
+import 'package:swap_theme_webon/pages/home_page.dart';
 
 final GoRouter router = GoRouter(
   routes: <RouteBase>[
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
-        return const HomeScreen();
+        return const HomePage();
       },
     ),
     GoRoute(
-      path: "/predefined",
+      path: "/customize",
       builder: (BuildContext context, GoRouterState state) {
-        return const SelectPredefinedScreen();
+        return const CutomizeThemePage();
       },
     ),
   ],

@@ -74,6 +74,54 @@ class PredefinedThemes {
     ),
   );
 
+  // Lavender Dreams Theme - Soft, elegant purple-based palette
+  static final lavenderDreams = NomoColorThemeDataNullable(
+    key: const ValueKey("lavender_dreams"),
+    colors: const NomoColors(
+      primary: Color(0xFF9C27B0), // Rich Purple
+      onPrimary: Colors.white,
+      primaryContainer: Color(0xFFF3E5F5),
+      secondary: Color(0xFF7B1FA2), // Deeper Purple
+      onSecondary: Colors.white,
+      secondaryContainer: Color(0xFFE1BEE7),
+      background1: Color(0xFFF8F5FA),
+      background2: Color(0xFFF3F0F6),
+      background3: Color(0xFFEDE7F1),
+      surface: Colors.white,
+      error: Color(0xFFE53935),
+      disabled: Color(0xFFE0E0E0),
+      foreground1: Color(0xDF000000),
+      foreground2: Color(0xCC000000),
+      foreground3: Color(0xBD000000),
+      brightness: Brightness.light,
+      onDisabled: Color(0xFF9E9E9E),
+    ),
+  );
+
+  // Sea Breeze Theme - Fresh coastal-inspired palette
+  static final seaBreeze = NomoColorThemeDataNullable(
+    key: const ValueKey("sea_breeze"),
+    colors: const NomoColors(
+      primary: Color(0xFF00ACC1), // Cyan
+      onPrimary: Colors.white,
+      primaryContainer: Color(0xFFE0F7FA),
+      secondary: Color(0xFF0097A7), // Darker Cyan
+      onSecondary: Colors.white,
+      secondaryContainer: Color(0xFFB2EBF2),
+      background1: Color(0xFFF5FCFD),
+      background2: Color(0xFFEFF8F9),
+      background3: Color(0xFFE5F4F5),
+      surface: Colors.white,
+      error: Color(0xFFE53935),
+      disabled: Color(0xFFE0E0E0),
+      foreground1: Color(0xDF000000),
+      foreground2: Color(0xCC000000),
+      foreground3: Color(0xBD000000),
+      brightness: Brightness.light,
+      onDisabled: Color(0xFF9E9E9E),
+    ),
+  );
+
   // Dark Ocean Theme - Dark theme with cool ocean-inspired colors
   static final darkOcean = NomoColorThemeDataNullable(
     key: const ValueKey("dark_ocean"),
@@ -99,8 +147,8 @@ class PredefinedThemes {
   );
 
   // Cyberpunk Night Theme - Futuristic dark theme with neon accents
-  static final cyberpunkNight = NomoColorThemeDataNullable(
-    key: const ValueKey("cyberpunk_night"),
+  static final cyberpunk = NomoColorThemeDataNullable(
+    key: const ValueKey("cyberpunk"),
     colors: const NomoColors(
       primary: Color(0xFF00FF9C), // Neon Green
       onPrimary: Color(0xFF000000), // Black text on neon

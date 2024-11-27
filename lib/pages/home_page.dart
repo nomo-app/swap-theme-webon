@@ -13,8 +13,8 @@ import 'package:swap_theme_webon/theme.dart';
 import 'package:swap_theme_webon/widgets/theme_mode_toggle.dart';
 import 'package:swap_theme_webon/widgets/theme_selection_list.dart';
 
-class SelectPredefinedScreen extends HookConsumerWidget {
-  const SelectPredefinedScreen({super.key});
+class HomePage extends HookConsumerWidget {
+  const HomePage({super.key});
 
   Map<ColorMode, NomoColorThemeDataNullable> getThemes(ThemeDisplayMode mode) {
     final allThemes = AppThemeDelegate().getColorThemes();
@@ -24,7 +24,7 @@ class SelectPredefinedScreen extends HookConsumerWidget {
         ColorMode.DARK: allThemes[ColorMode.DARK]!,
         ColorMode.BLACK: allThemes[ColorMode.BLACK]!,
         ColorMode.DARKOCEAN: allThemes[ColorMode.DARKOCEAN]!,
-        ColorMode.CYBERPUNKNIGHT: allThemes[ColorMode.CYBERPUNKNIGHT]!,
+        ColorMode.CYBERPUNK: allThemes[ColorMode.CYBERPUNK]!,
         ColorMode.VOLCANICDARK: allThemes[ColorMode.VOLCANICDARK]!,
         ColorMode.AVINOC: allThemes[ColorMode.AVINOC]!,
       };
@@ -34,6 +34,8 @@ class SelectPredefinedScreen extends HookConsumerWidget {
         ColorMode.MODERNBLUE: allThemes[ColorMode.MODERNBLUE]!,
         ColorMode.NATUREGREEN: allThemes[ColorMode.NATUREGREEN]!,
         ColorMode.WARMDESERT: allThemes[ColorMode.WARMDESERT]!,
+        ColorMode.LAVENDERDREAMS: allThemes[ColorMode.LAVENDERDREAMS]!,
+        ColorMode.SEABREEZE: allThemes[ColorMode.SEABREEZE]!,
       };
     }
   }
@@ -41,20 +43,16 @@ class SelectPredefinedScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final themeDisplayMode = useState(
-      ThemeDisplayMode.light,
+      ThemeDisplayMode.dark,
     );
 
     return NomoScaffold(
       appBar: NomoAppBar(
-        leading: BackButton(
-          color: context.theme.colors.foreground1,
-          onPressed: () => context.go('/'),
-        ),
         title: NomoText("Select Theme", style: context.theme.typography.h1),
       ),
       floatingActionButton: PrimaryNomoButton(
         onPressed: () {
-          context.go('/custom');
+          context.push('/customize');
         },
         child: Row(
           mainAxisSize: MainAxisSize.min,
@@ -64,11 +62,14 @@ class SelectPredefinedScreen extends HookConsumerWidget {
               fontWeight: FontWeight.bold,
             ),
             8.hSpacing,
-            const Icon(Icons.arrow_forward),
+            const Icon(
+              Icons.arrow_forward,
+            ),
           ],
         ),
       ),
       child: NomoRouteBody(
+        maxContentWidth: 650,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
