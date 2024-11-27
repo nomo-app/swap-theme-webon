@@ -17,8 +17,8 @@ dependencies:
   flutter_web_plugins:
     sdk: flutter
   nomo_ui_kit: ^0.0.28
-  # webon_kit_dart:
-    # path: packages/webon-kit-dart
+  webon_kit_dart:
+    path: packages/webon-kit-dart
 
   cupertino_icons: ^1.0.2
   google_fonts: ^6.1.0

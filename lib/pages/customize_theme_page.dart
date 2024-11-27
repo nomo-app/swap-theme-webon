@@ -13,6 +13,7 @@ import 'package:nomo_ui_kit/theme/theme_provider.dart';
 import 'package:nomo_ui_kit/utils/layout_extensions.dart';
 import 'package:swap_theme_webon/widgets/color_picker_dialog.dart';
 import 'package:swap_theme_webon/widgets/color_widget.dart';
+import 'package:webon_kit_dart/webon_kit_dart.dart';
 
 class CutomizeThemePage extends HookConsumerWidget {
   const CutomizeThemePage({super.key});
@@ -25,7 +26,11 @@ class CutomizeThemePage extends HookConsumerWidget {
       floatingActionButton: PrimaryNomoButton(
         backgroundColor: themeState.value.colors.primary,
         onPressed: () {
-          print("save theme");
+          final colors = themeState.value.colors.toJson();
+          final Map<String, dynamic> colorsMap = {
+            "colors": colors.toString(),
+          };
+          WebonKitDart.setNomoColors(colorsMap);
         },
         child: Row(
           mainAxisSize: MainAxisSize.min,
