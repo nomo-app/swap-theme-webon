@@ -23,7 +23,7 @@ class ColorSectionHeading extends ConsumerWidget {
         children: [
           SecondaryNomoButton(
             foregroundColor: Colors.red,
-            padding: const EdgeInsets.all(8),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             height: 50,
             onPressed: () {
               ref.read(colorPalatteNotifierProvider.notifier).clearColors();
@@ -35,7 +35,6 @@ class ColorSectionHeading extends ConsumerWidget {
               ),
             ),
           ),
-          const Spacer(),
           if (themeProvider.colorTheme == ColorMode.DARK.theme)
             SecondaryNomoButton(
               height: 50,
@@ -45,7 +44,7 @@ class ColorSectionHeading extends ConsumerWidget {
                   SnackBar(
                     backgroundColor: context.theme.colors.foreground1,
                     content: NomoText(
-                      "Currently creating a light theme!",
+                      "Creating a light theme!",
                       textAlign: TextAlign.center,
                       style: context.theme.typography.b3.copyWith(
                         color: context.theme.colors.primary,
@@ -88,7 +87,7 @@ class ColorSectionHeading extends ConsumerWidget {
                   SnackBar(
                     backgroundColor: context.theme.colors.foreground1,
                     content: NomoText(
-                      "Currently creating a dark theme!",
+                      "Creating a dark theme!",
                       textAlign: TextAlign.center,
                       style: context.theme.typography.b3.copyWith(
                         color: context.theme.colors.primary,

@@ -18,7 +18,7 @@ class HomeHeading extends StatelessWidget {
         children: [
           Expanded(
             child: NomoText(
-              "Choose a color to start!",
+              "Choose a color!",
               maxLines: 2,
               style: context.theme.typography.h2,
               color: context.theme.colors.foreground1,

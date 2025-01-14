@@ -53,7 +53,7 @@ class SavedThemeItem extends ConsumerWidget {
                   backgroundColor: context.colors.foreground1,
                   content: NomoText(
                     textAlign: TextAlign.center,
-                    "Your theme has been set successfully! 🎉",
+                    "Theme set successfully! 🎉",
                     style: context.theme.typography.b3.copyWith(
                       color: context.theme.colors.primary,
                     ),

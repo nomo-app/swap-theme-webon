@@ -30,27 +30,22 @@ class ColorSection extends ConsumerWidget {
       children: [
         ColorsWidget(
           color: colors.primary,
-          name: "Primary",
-          description: "The primary color of the app",
+          name: "Primary Color of the App",
           onTap: () => _onTap(ColorFields.primary, context),
         ),
         ColorsWidget(
           color: colors.onPrimary,
-          name: "On Primary",
-          description: "The color of the text on the primary color",
+          name: "Text Color on Primary Color",
           onTap: () => _onTap(ColorFields.onPrimary, context),
         ),
         ColorsWidget(
           color: colors.foreground1,
-          name: "Foreground",
-          description: "The color of the text on the background (text color)",
+          name: "Foreground Color of the App",
           onTap: () => _onTap(ColorFields.foreground1, context),
         ),
         ColorsWidget(
           color: colors.background1,
-          name: "Background",
-          description:
-              "The background color of launcher icons and other elements",
+          name: "Background Color of the App",
           onTap: () => _onTap(ColorFields.background1, context),
         ),
         // ColorsWidget(

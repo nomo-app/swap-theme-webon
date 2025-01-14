@@ -8,13 +8,11 @@ class ColorsWidget extends StatelessWidget {
   final Color color;
   final String name;
   final Function() onTap;
-  final String description;
   const ColorsWidget({
     super.key,
     required this.color,
     required this.name,
     required this.onTap,
-    required this.description,
   });
 
   @override
@@ -48,20 +46,11 @@ class ColorsWidget extends StatelessWidget {
             height: 48,
           ),
           const SizedBox(width: 16),
-          NomoText(
-            name,
-            style: typo.b3.copyWith(
-              color: context.colors.foreground1,
-            ),
-          ),
-          const SizedBox(width: 16),
           Expanded(
             child: NomoText(
-              description,
-              fit: true,
-              maxLines: 3,
-              overflow: TextOverflow.ellipsis,
-              style: typo.b2.copyWith(
+              name,
+              maxLines: 2,
+              style: typo.b3.copyWith(
                 color: context.colors.foreground1,
               ),
             ),
