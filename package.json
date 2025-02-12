@@ -4,6 +4,6 @@
         "deploy": "nomo-webon-cli deploy nomo.tar.gz production"
     },
     "devDependencies": {
-        "nomo-webon-cli": "^0.1.9"
+        "nomo-webon-cli": "^0.2.1"
     }
 }

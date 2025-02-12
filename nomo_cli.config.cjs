@@ -2,8 +2,8 @@ const nomoCliConfig = {
     deployTargets: {
         production: {
             rawSSH: {
-                sshHost: process.env.SSH_TARGET,
-                sshBaseDir: "/var/www/production_webons/swaptheme/",
+                sshHost: process.env.SSH_TARGET_SWAP_THEME,
+                sshBaseDir: "/var/www/html",
                 publicBaseUrl: "https://customtheme.nomo.zone",
                 hybrid: true,
             },
